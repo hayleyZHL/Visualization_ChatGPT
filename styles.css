@@ -1,0 +1,46 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+.parallax-container {
+    position: relative;
+    height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    perspective: 1px;
+    perspective-origin: left;
+}
+
+.parallax-section {
+    position: relative;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #f0f0f0;
+    background-position: center;
+    background-size: cover;
+}
+
+#section2 {
+    background-color: #e0e0e0;
+}
+
+.text-container {
+    max-width: 40%;
+    padding: 30px;
+    box-sizing: border-box;
+    font-size: 18px;
+}
+
+.chart-container {
+    max-width: 40%;
+}
+
+.chart {
+    display: block;
+    margin: 0 auto;
+}
