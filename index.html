@@ -3,36 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parallax Scrolling Effect</title>
+    <title>Parallax Scrolling Effect with D3</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <div class="parallax-container">
     <div class="parallax-section" id="section1">
         <div class="text-container">
+            <h2>Bar Chart</h2>
             <p>Description for the bar chart</p>
         </div>
-        <div class="chart-container">
-            <!-- Bar chart -->
-            <svg class="chart" width="400" height="200">
-                <rect x="10" y="150" width="30" height="50" fill="steelblue"></rect>
-                <rect x="50" y="130" width="30" height="70" fill="steelblue"></rect>
-                <rect x="90" y="100" width="30" height="100" fill="steelblue"></rect>
-                <rect x="130" y="110" width="30" height="90" fill="steelblue"></rect>
-                <rect x="170" y="120" width="30" height="80" fill="steelblue"></rect>
-            </svg>
-        </div>
+        <div class="chart-container" id="bar-chart"></div>
     </div>
     <div class="parallax-section" id="section2">
         <div class="text-container">
+            <h2>Line Chart</h2>
             <p>Description for the line chart</p>
         </div>
-        <div class="chart-container">
-            <!-- Line chart -->
-            <svg class="chart" width="400" height="200">
-                <polyline points="10,180 50,140 90,80 130,100 170,110" fill="none" stroke="red" stroke-width="2"></polyline>
-            </svg>
-        </div>
+        <div class="chart-container" id="line-chart"></div>
     </div>
 </div>
 <script src="https://d3js.org/d3.v7.min.js"></script>
