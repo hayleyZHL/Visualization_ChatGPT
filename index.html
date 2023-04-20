@@ -1,29 +1,228 @@
+<!--scrollama version-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parallax Scrolling Effect with D3</title>
-    <link rel="stylesheet" href="styles.css">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Parallax Scrolling Effect</title>
 </head>
+
+<style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        font-family: Arial, sans-serif;
+    }
+
+    .parallax-container {
+        position: relative;
+        height: 100%;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        perspective: 1px;
+        perspective-origin: left;
+    }
+
+    .parallax-section {
+        position: relative;
+        height: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        background-color: #f0f0f0;
+        background-position: center;
+        background-size: cover;
+    }
+
+    #section2 {
+        background-color: #e0e0e0;
+    }
+
+    .text-container {
+        max-width: 40%;
+        padding: 30px;
+        box-sizing: border-box;
+        font-size: 18px;
+        background-color: rgba(255, 255, 255, 0.6); /* semi-transparent white background */
+        border-radius: 5px; /* rounded corners */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* subtle shadow for depth */
+    }
+
+    .chart-container {
+        max-width: 40%;
+    }
+
+    .chart {
+        display: block;
+        margin: 0 auto;
+    }
+
+    .gif-container {
+        max-width: 40%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .gif {
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+</style>
+
 <body>
 <div class="parallax-container">
+    <!-- section 1, GIF -->
     <div class="parallax-section" id="section1">
         <div class="text-container">
-            <h2>Bar Chart</h2>
-            <p>Description for the bar chart</p>
+            <h2>GIF Animation</h2>
+            <p>Description for the GIF animation</p>
         </div>
-        <div class="chart-container" id="bar-chart"></div>
+        <div class="gif-container">
+            <img class="gif" src="https://media.giphy.com/media/d1CuPQxMhtItfegHkk/giphy.gif" alt="Your GIF description" />
+        </div>
     </div>
+
+    <!-- section 2, line chart -->
     <div class="parallax-section" id="section2">
         <div class="text-container">
-            <h2>Line Chart</h2>
+            <h2>Line Chart with D3</h2>
             <p>Description for the line chart</p>
         </div>
-        <div class="chart-container" id="line-chart"></div>
+        <div class="chart-container">
+            <svg class="chart" height="200" width="400"></svg>
+        </div>
     </div>
+
+    <!-- section 3, bar chart -->
+    <div class="parallax-section" id="section3">
+        <div class="text-container">
+            <h2>Bar Chart with D3</h2>
+            <p>Description for the bar chart</p>
+        </div>
+        <div class="chart-container">
+            <svg class="chart" height="200" width="400"></svg>
+        </div>
+    </div>
+
 </div>
+
 <script src="https://d3js.org/d3.v7.min.js"></script>
-<script src="script.js"></script>
+<script src="https://unpkg.com/scrollama"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Initialize Scrollama
+        const scroller = scrollama();
+        const parallaxContainer = document.querySelector('.parallax-container');
+
+        function parallaxScroll() {
+            const scrollTop = parallaxContainer.scrollTop;
+            const windowHeight = window.innerHeight;
+
+            document.querySelectorAll('.parallax-section').forEach((section, index) => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+
+                if (scrollTop + windowHeight >= sectionTop && scrollTop <= sectionTop + sectionHeight) {
+                    const translateAmount = (scrollTop - sectionTop) / 2;
+                    const container = section.querySelector('.chart-container') || section.querySelector('.gif-container');
+                    container.style.transform = `translateY(${translateAmount}px)`;
+                }
+            });
+        }
+
+        // Scrollama configuration
+        scroller
+            .setup({
+                step: '.parallax-section',
+                offset: 0.5
+            })
+            .onStepEnter(({element, index}) => {
+                // Line Chart
+                if (index === 1) {
+                    const data = [
+                        { x: 0, y: 180 },
+                        { x: 1, y: 140 },
+                        { x: 2, y: 80 },
+                        { x: 3, y: 100 },
+                        { x: 4, y: 110 }
+                    ];
+                    const xScale = d3.scaleLinear().domain(d3.extent(data, d => d.x)).range([0, 400]);
+                    const yScale = d3.scaleLinear().domain(d3.extent(data, d => d.y)).range([180, 0]);
+
+                    const line = d3.line()
+                        .x(d => xScale(d.x))
+                        .y(d => yScale(d.y))
+                        .curve(d3.curveMonotoneX);
+
+                    const svg = d3.select(element.querySelector('.chart'))
+                        .append('path')
+                        .datum(data)
+                        .attr('d', line)
+                        .attr('stroke', 'steelblue')
+                        .attr('stroke-width', 2)
+                        .attr('fill', 'none')
+                        .attr('stroke-dasharray', '1000 1000')
+                        .attr('stroke-dashoffset', 1000);
+
+                    // Line chart animation
+                    svg.transition()
+                        .duration(2000)
+                        .attr('stroke-dashoffset', 0);
+                }
+
+                // Bar Chart
+                if (index === 2) {
+                    const data = [
+                        { index: 0, value: 50 },
+                        { index: 1, value: 70 },
+                        { index: 2, value: 100 },
+                        { index: 3, value: 90 },
+                        { index: 4, value: 80 }
+                    ];
+                    const xScale = d3.scaleBand().domain(data.map(d => d.index)).range([0, 400]).padding(0.2);
+                    const yScale = d3.scaleLinear().domain([0, d3.max(data, d => d.value)]).range([180, 0]);
+
+                    const svg = d3.select(element.querySelector('.chart'))
+                        .selectAll('rect')
+                        .data(data)
+                        .enter()
+                        .append('rect')
+                        .attr('x', (d, i) => xScale(i))
+                        .attr('y', 180)
+                        .attr('width', xScale.bandwidth())
+                        .attr('height', 0)
+                        .attr('fill', 'steelblue');
+
+                    // Bar chart animation
+                    svg.transition()
+                        .duration(1000)
+                        .attr('y', d => yScale(d.value))
+                        .attr('height', d => 180 - yScale(d.value));
+
+                    // Bar chart interactivity
+                    const barChart = d3.select('#section3 .chart');
+                    barChart.selectAll('rect')
+                        .on('mouseover', function () {
+                            d3.select(this)
+                                .attr('fill', 'darkblue');
+                        })
+                        .on('mouseout', function () {
+                            d3.select(this)
+                                .attr('fill', 'steelblue');
+                        });
+                }
+            });
+
+        // Listen to scroll event
+        parallaxContainer.addEventListener('scroll', parallaxScroll);
+
+        // Initial setup
+        parallaxScroll();
+    });
+</script>
 </body>
 </html>
