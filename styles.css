@@ -29,7 +29,7 @@ body, html {
 /*#section01 { background-image: url("https://automationswitch.com/wp-content/uploads/2021/01/automation-switch-geoff-hint-3-1024x499.png"); }*/
 #section01 { background-image: url("https://cdn-images-1.medium.com/max/2000/1*ILJI87KKC7Y3y5ExxbGA8A.png"); }
 
-#section1,#section5 { background-color: #e0e0e0; }
+#section1,#section5,#section7,#section9 { background-color: #e0e0e0; }
 
 .text-container {
     max-width: 450px;
