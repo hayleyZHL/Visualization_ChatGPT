@@ -10,23 +10,13 @@
 <body>
 <!-- section 0, Intro Page -->
 <div class="parallax-container">
-<!--    <div class="parallax-section" id="sectionIntro">-->
-<!--        <div class="text-container">-->
-<!--            <h2> An Introduction to ChatGPT </h2>-->
-<!--            <p> The revolutionary AI language model that's changing the game!</p>-->
-<!--            <p> Keep Scrolling..</p>-->
-<!--        </div>-->
-<!--        <div class="chart-container" style="visibility: hidden;">-->
-<!--            <svg class="chart" height="200" width="900"></svg> &lt;!&ndash; Invisible placeholder &ndash;&gt;-->
-<!--        </div>-->
-<!--    </div>-->
     <div class="parallax-container">
         <div class="parallax-section" id="sectionIntro">
 
             <div class="text-container">
                 <h2> An Introduction to ChatGPT </h2>
                 <p> The revolutionary AI language model that's changing the game!</p>
-                <p>                
+                <p>
                     <img src="https://upload.wikimedia.org/wikipedia/commons/f/fd/Arrows_down_animated.gif" alt="Scroll down arrow" width="40" height="40">
 
                 </p>
@@ -51,6 +41,11 @@
             <p>
                 If the machine can fool the evaluator into thinking it is human, it is said to have passed the Turing Test.
             </p>
+            <p>
+                <img src="https://media.geeksforgeeks.org/wp-content/uploads/Turing-Diagram-159676.png" width="300" height="170">
+
+            </p>
+
         </div>
         <div class="chart-container" style="visibility: hidden;">
             <svg class="chart" height="200" width="900"></svg> <!-- Invisible placeholder -->
@@ -59,30 +54,67 @@
     <!-- section 2, Hinton & Neuron Network -->
     <div class="parallax-section" id="section01">
         <div class="chart-container" style="visibility: hidden;">
-            <svg class="chart" height="200" width="900"></svg> <!-- Invisible placeholder -->
+            <svg class="chart" height="200" width="700"></svg> <!-- Invisible placeholder -->
         </div>
         <div class="text-container">
             <h2>Geoffrey Hinton and the Revolution of Neural Networks</h2>
             <p> Geoffrey Hinton is a computer scientist and cognitive psychologist who revolutionized the field of artificial intelligence with his groundbreaking work on neural networks. </p>
             <p>
-            His groundbreaking research has enabled significant advances in artificial intelligence and machine learning,
+            His  work has enabled significant advances in artificial intelligence and machine learning,
                 including the development of the transformer architecture used in the ChatGPT model. </p>
-            <p> Neural networks, which are modeled after the human brain, are a key component of deep learning and are used by ChatGPT to generate human-like responses to a wide range of questions and prompts.
+            <p>
+                <img src="https://media.wired.com/photos/59327770edfced5820d10bb3/master/w_2560%2Cc_limit/ai_new-ft.jpg">
+
+
             </p>
         </div>
     </div>
     <!-- section 3, What is ChatGPT? -->
     <div class="parallax-section" id="section1">
         <div class="text-container">
-            <h2>GIF Animation</h2>
-            <p>Description for the GIF animation</p>
+            <h2>What is ChatGPT?</h2>
+            <p>ChatGPT is a chatbot (or, in technical terms, a ‘large language model’) created by US-based artificial intelligence company OpenAI.</p>
+            <p> When you ask ChatGPT a question, it draws on a huge body of textual data — large chunks of content found on the Internet,
+                many books, all of Wikipedia — to provide you with a human-like answer to it. </p>
+            <p>You can also ask ChatGPT to create content for you — it can write poems, create computer code, translate languages,
+                provide article structures and do much else besides.</p>
+
         </div>
-        <div class="gif-container">
-            <img alt="GIF description" class="gif" src="https://media.giphy.com/media/d1CuPQxMhtItfegHkk/giphy.gif"/>
+        <p>
+            <img src="https://static.wixstatic.com/media/a89add_3d73f7e43cff4f37bdf0af4772ef6595~mv2.gif" width="200" height="200" style="float: outside">
+        </p>
+        <div class="quiz-container" id="ready">
+            <div class="question">
+                Are you ready to take a quiz?
+            </div>
+            <div class="options">
+                <div class="start-btn" onclick="showQuiz()">Start Quiz</div>
+            </div>
+        </div>
+        <div class="quiz-container" id="quiz" style="display: none;">
+            <div class="question">
+                Now, do you think ChatGPT passed the Turing Test?
+            </div>
+            <div class="options">
+                <div class="option" onclick="showFeedback('yes')">Yes</div>
+                <div class="option" onclick="showFeedback('no')">No</div>
+            </div>
+            <div class="feedback" id="feedback-yes">
+                According to Buzzfeed data scientist Max Woolf, ChatGPT has passed the Turing Test by producing responses
+                that were indistinguishable from human conversation to a panel of judges.
+            </div>
+            <div class="feedback" id="feedback-no">
+                If you ask ChatGPT if it is capable of passing the Turing test, the answer from the chatbot is a definitive ‘No!’
+            </div>
+            <p>
+            <img class="reveal-image" id="reveal-image" src="https://pbs.twimg.com/media/Fr47uLLX0AENP8i.jpg:large" alt="Image after quiz completion" width="500" height="250" style="margin-top: 20px;">
+            </p>
         </div>
     </div>
     <!-- section 4, How many people use ChatGPT? -->
     <div class="parallax-section" id="section2">
+        <div class="chart-container"> <svg class="chart" height="200" width="400"></svg> </div>
+
         <div class="text-container">
             <h2>Line Chart with D3</h2>
             <div class="data-info">Data point: </div>
@@ -90,7 +122,6 @@
             <p>It set the record for the fastest-growing platform by gaining 100 million users by January.</p>
             <p>It reached 1 billion visits in February and 1.6 billion visits in March 2023.</p>
         </div>
-        <div class="chart-container"> <svg class="chart" height="200" width="400"></svg> </div>
     </div>
     <!-- section 5, How long did it take for other platforms to reach a certain number of users? -->
     <div class="parallax-section" id="section5">
@@ -164,11 +195,17 @@
                 const sectionHeight = section.offsetHeight;
                 if (scrollTop + windowHeight >= sectionTop && scrollTop <= sectionTop + sectionHeight) {
                     const translateAmount = (scrollTop - sectionTop) / 2;
-                    const translateAmountText =  -(scrollTop - sectionTop)/4;
-                    const container = section.querySelector('.chart-container') || section.querySelector('.gif-container');
-                    container.style.transform = `translateY(${translateAmount}px)`;
+                    const translateAmountText =  -(scrollTop - sectionTop)/3.7;
+                    const container = section.querySelector('.chart-container') || section.querySelector('.quiz-container');
                     const containerText = section.querySelector('.text-container');
-                    containerText.style.transform = `translateY(${translateAmountText}px)`;
+                    // Prevent container from exceeding the section's top
+                    // if (scrollTop >= sectionTop) {
+                        container.style.transform = `translateY(${translateAmount}px)`;
+                        containerText.style.transform = `translateY(${translateAmountText}px)`;
+                    // } else {
+                    //     container.style.transform = `translateY(0)`;
+                    //     containerText.style.transform = `translateY(0)`;
+                    // }
                 }
             });
         }
@@ -193,9 +230,9 @@
 
     function handleStepEnter(element, index, direction) {
         if (index === 3) {
-            const gif = element.querySelector('.gif');
-            gif.style.visibility = 'visible';
-            gif.style.opacity = 1;
+            const quiz = element.querySelector('.quiz-container');
+            // quiz.style.visibility = 'visible';
+            // quiz.style.opacity = 1;
         }
         // if (index === 3 || index === 4) {
         //     const chartContainer = element.querySelector('.chart-container');
@@ -234,8 +271,8 @@
     function handleStepExit(element, index) {
         // Hide the GIF when section1 is no longer visible
         if (index === 3) {
-            const gif = element.querySelector('.gif');
-            gif.style.opacity = 0;
+            // const quiz = element.querySelector('.quiz-container');
+            // quiz.style.opacity = 0;
         }
     }
     function drawLineChart(lineChartData) {
@@ -397,8 +434,16 @@
             .call(yAxisTicks);
 
     }
+    function showQuiz() {
+        document.getElementById("ready").style.display = "none";
+        document.getElementById("quiz").style.display = "block";
+    }
 
-
+    function showFeedback(option) {
+        document.getElementById("feedback-" + option).style.display = "block";
+        document.getElementById("reveal-image").style.display = "block";
+        document.getElementById("reveal-image").style.opacity = "1";
+    }
 </script>
 </body>
 </html>

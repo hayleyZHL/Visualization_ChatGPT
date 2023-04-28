@@ -68,9 +68,7 @@
             <h2>Bar Chart with D3</h2>
             <p>Description for the bar chart</p>
         </div>
-        <div class="chart-container">
-            <svg class="chart" height="370" width="650"></svg>
-        </div>
+        <div class="chart-container"> <svg class="chart" height="200" width="400"></svg> </div>
     </div>
     <!-- section 6, What was the size of the dataset used for training ChatGPT? -->
     <div class="parallax-section" id="section6">
@@ -118,9 +116,16 @@
     const competitorData = [
         {company: "ChatGPT", duration: "5 days", launched: 2022},
         {company: "Instagram", duration: "2 months", launched: 2010},
-        {company: "Spotify", duration: "5 months", launched: 2008},
         {company: "Facebook", duration: "10 months", launched: 2004},
+        {company: "Spotify", duration: "5 months", launched: 2008},
         {company: "Netflix", duration: "3.5 years", launched: 1999},
+    ];
+    const barChartData = [
+        {index: 0, value: 50},
+        {index: 1, value: 70},
+        {index: 2, value: 100},
+        {index: 3, value: 90},
+        {index: 4, value: 80}
     ];
     document.addEventListener('DOMContentLoaded', () => {
         // Initialize Scrollama
@@ -144,7 +149,7 @@
         }
 
         drawLineChart(lineData);
-        drawBarChart(competitorData);
+        drawBarChart(barChartData);
 
         // Scrollama configuration
         scroller
@@ -186,20 +191,15 @@
         }
         // Bar Chart
         if (index === 5) {
-            const margin = { top: 50, right: 20, bottom: 50, left: 80 };
-            const height = 370 - margin.top - margin.bottom;
             let barSvg = d3.select('#section5 .chart').selectAll('rect')
-            const yScaleBar = d3.scaleLinear()
-                .domain([0, d3.max(competitorData, d => durationToDays(d.duration))])
-                .range([height, 0]);
+            let yScaleBar = d3.scaleLinear().domain([0, d3.max(barChartData, d => d.value)]).range([180, 0]);
             barSvg.each(function (d) {
                 const bar = d3.select(this);
-                const targetHeight = yScaleBar(0) - yScaleBar(durationToDays(d.duration));
+                const targetHeight = yScaleBar(0) - yScaleBar(d.value);
                 bar.attr('height', targetHeight * progress * 2)
-                    .attr('y', (height - targetHeight * progress * 2)); // 修改此处
+                    .attr('y', 180 - targetHeight * progress * 2);
             });
         }
-
     }
     function handleStepExit(element, index) {
         // Hide the GIF when section1 is no longer visible
@@ -250,125 +250,23 @@
                     .style('top', `${event.pageY}px`);
             })
             .on('mouseout', () => {
-                d3.select('.tooltip').remove();
+                setTimeout(() => { d3.select('.tooltip').remove();}, 100);
             });
-        //
-        //     setTimeout(() => { d3.select('.tooltip').remove();}, 100);
-        // });
     }
-    function durationToDays(duration) {
-        if (duration.includes("days")) {
-            return parseFloat(duration);
-        } else if (duration.includes("months")) {
-            return parseFloat(duration) * 30;
-        } else if (duration.includes("years")) {
-            return parseFloat(duration) * 365;
-        }
-        return 0;
-    }
-    function drawBarChart(competitorData) {
-        const margin = { top: 50, right: 20, bottom: 50, left: 80 };
-        const width = 650 - margin.left - margin.right;
-        const height = 370 - margin.top - margin.bottom;
 
-        const xScaleBar = d3.scaleBand().domain(competitorData.map(d => d.company)).range([0, width]).padding(0.2);
-        const yScaleBar = d3.scaleLinear()
-            .domain([0, d3.max(competitorData, d => durationToDays(d.duration))])
-            .range([height, 0]);
-
-        const colorScale = d3.scaleOrdinal(d3.schemeCategory10); // Add color scale
-
-        const yAxisTicks = d3.axisLeft(yScaleBar)
-            .tickValues(yScaleBar.ticks().concat(yScaleBar.domain()))
-            .tickFormat(d => {
-                if (d % 365 === 0) return `${d / 365} years`;
-                if (d % 30 === 0) return `${d / 30} months`;
-                return `${d} days`;
-            });
-
-        const chart = d3.select('#section5 .chart')
-            .attr('width', width + margin.left + margin.right)
-            .attr('height', height + margin.top + margin.bottom)
-            .append('g')
-            .attr('transform', `translate(${margin.left}, ${margin.top})`);
-
-        // Add title and axis titles
-        chart.append('text')
-            .attr('class', 'chart-title')
-            .attr('x', width / 2)
-            .attr('y', -20)
-            .style('text-anchor', 'middle')
-            .style('font-size', '18px')
-            .text('Time to Reach User Milestones');
-
-        chart.append('text')
-            .attr('class', 'axis-title')
-            .attr('x', -height / 2)
-            .attr('y', -67)
-            .attr('transform', 'rotate(-90)')
-            .style('text-anchor', 'middle')
-            .style('font-size', '12px')
-            .text('Duration');
-
-        chart.append('text')
-            .attr('class', 'axis-title')
-            .attr('x', width / 2)
-            .attr('y', height + 40)
-            .style('text-anchor', 'middle')
-            .style('font-size', '12px')
-            .text('Platform');
-
-        const tooltip = chart
-            .append('g')
-            .style('opacity', 0)
-            .style('font-size', '12px')
-            .style('text-anchor', 'middle');
-
-        tooltip
-            .append('text')
-            .attr('class', 'tooltip-text tooltip-duration')
-            .attr('y', -25);
-
-        tooltip
-            .append('text')
-            .attr('class', 'tooltip-text tooltip-launched')
-            .attr('y', -10);
-
-        chart.selectAll('rect')
-            .data(competitorData)
+    function drawBarChart(barChartData) {
+        const xScaleBar = d3.scaleBand().domain(barChartData.map(d => d.index)).range([0, 400]).padding(0.2);
+        // const yScaleBar = d3.scaleLinear().domain([0, d3.max(barChartData, d => d.value)]).range([180, 0]);
+        d3.select('#section5 .chart')
+            .selectAll('rect')
+            .data(barChartData)
             .join('rect')
-            .attr('x', (d, i) => xScaleBar(d.company))
+            .attr('x', (d, i) => xScaleBar(i))
             .attr('width', xScaleBar.bandwidth())
-            .attr('fill', (d, i) => colorScale(i))
-            .attr('y', d => yScaleBar(durationToDays(d.duration)))
-            .attr('height', d => height - yScaleBar(durationToDays(d.duration)))
-            .on('mouseover', (event, d) => {
-                d3.select(event.currentTarget)
-                    .attr('fill', 'darkorange');
-                tooltip
-                    .style('opacity', 1)
-                    .attr('transform', `translate(${xScaleBar(d.company) + xScaleBar.bandwidth() / 2}, ${yScaleBar(durationToDays(d.duration))})`);
-                tooltip.select('.tooltip-launched')
-                    .text(`Launched in ${d.launched}`);
-                tooltip.select('.tooltip-duration')
-                    .text(`Took ${d.duration}`);
-            })
-            .on('mouseout', function(event, d) {
-                d3.select(event.currentTarget)
-                    .attr('fill', colorScale(competitorData.indexOf(d)));
-                tooltip.style('opacity', 0);
-            });
-
-        chart.append('g')
-            .attr('transform', `translate(0, ${height})`)
-            .call(d3.axisBottom(xScaleBar));
-
-        chart.append('g')
-            .call(yAxisTicks);
-
+            .attr('fill', 'steelblue')
+            .attr('y', 180)
+            .attr('height', 0);
     }
-
-
 </script>
 </body>
 </html>

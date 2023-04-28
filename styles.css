@@ -27,7 +27,7 @@ body, html {
 /*#section01 { background-image: url("https://automationswitch.com/wp-content/uploads/2021/01/automation-switch-geoff-hint-3-1024x499.png"); }*/
 #section01 { background-image: url("https://cdn-images-1.medium.com/max/2000/1*ILJI87KKC7Y3y5ExxbGA8A.png"); }
 
-#section2 { background-color: #e0e0e0; }
+#section1,#section5 { background-color: #e0e0e0; }
 
 .text-container {
     max-width: 450px;
@@ -82,4 +82,58 @@ body, html {
     font-weight: bold;
     font-size: 24px;
     margin-top: 10px;
+}
+
+.quiz-container {
+    max-width: 500px;
+    background-image: linear-gradient(to right, rgba(244, 255, 243, 0.86), rgba(236, 242, 252, 0.86));
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    margin-top: 20px;
+    box-shadow: 0 0 10px rgba(236, 242, 252, 0.86), 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    word-wrap: break-word;
+}
+
+.quiz-container:hover {
+    box-shadow: 0 0 20px rgba(236, 242, 252, 0.86), 0 10px 20px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+}
+
+.question {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+.options {
+    display: flex;
+    justify-content: center;
+}
+
+.option, .start-btn {
+    background-color: #a9a9a9;
+    color: #ffffff;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin: 0 10px;
+    transition: all 0.3s ease;
+}
+
+.option:hover, .start-btn:hover {
+    background-color: #8c8c8c;
+    transform: translateY(-3px);
+}
+
+.feedback {
+    display: none;
+    font-size: 1.2em;
+    margin-top: 20px;
+}
+
+.reveal-image {
+    display: none;
+    opacity: 0;
+    transition: opacity 1s ease;
 }
