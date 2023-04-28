@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Parallax Scrolling Effect with Scrollama</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://unpkg.com/scrollama"></script>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+        }
+
+        .parallax-container {
+            position: relative;
+            height: 100%;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            perspective: 1px;
+            perspective-origin: left;
+        }
+
+        .parallax-section {
+            position: relative;
+            height: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: #f0f0f0;
+            background-position: center;
+            background-size: cover;
+        }
+
+        #section2 {
+            background-color: #e0e0e0;
+        }
+
+        .text-container {
+            max-width: 40%;
+            padding: 30px;
+            box-sizing: border-box;
+            font-size: 18px;
+        }
+
+        .chart-container {
+            max-width: 40%;
+        }
+
+        .chart {
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+<div class="parallax-container">
+    <div class="parallax-section" id="section1">
+        <div class="text-container">
+            <h2>Bar Chart with D3</h2>
+            <p>Description for the bar chart</p>
+        </div>
+        <div class="chart-container">
+            <!-- Bar chart with D3 -->
+            <svg class="chart" height="200" width="400"></svg>
+        </div>
+    </div>
+    <div class="parallax-section" id="section2">
+        <div class="text-container">
+            <h2>Line Chart with D3</h2>
+            <p>Description for the line chart</p>
+        </div>
+        <div class="chart-container">
+            <!-- Line chart with D3 -->
+            <svg class="chart" height="200" width="400"></svg>
+        </div>
+    </div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const parallaxContainer = document.querySelector(
+            ".parallax-container"
+        );
+
+        const scroller = scrollama();
+
+        function parallaxScroll() {
+            const scrollTop = parallaxContainer.scrollTop;
+            const windowHeight = window.innerHeight;
+            document
+                .querySelectorAll(".parallax-section")
+                .forEach((section, index) => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.offsetHeight;
+                    if (scrollTop + windowHeight >= sectionTop && scrollTop <= sectionTop + sectionHeight) {
+                        const translateAmount = (scrollTop - sectionTop) / 2;
+                        const container = section.querySelector('.chart-container');
+                        container.style.transform = `translateY(${translateAmount}px)`;
+                    }
+                        // Bar Chart
+                        if (index === 0) {
+                            const data = [50, 70, 100, 90, 80];
+                            const xScale = d3
+                                .scaleBand()
+                                .domain(data.map((d, i) => i))
+                                .range([0, 400])
+                                .padding(0.2);
+                            const yScale = d3.scaleLinear().domain([0, 100]).range([180, 0]);
+                            const svg = d3
+                                .select(section.querySelector(".chart"))
+                                .selectAll("rect")
+                                .data(data)
+                                .enter()
+                                .append("rect")
+                                .attr("x", (d, i) => xScale(i))
+                                .attr("y", (d) => yScale(d))
+                                .attr("width", xScale.bandwidth())
+                                .attr("height", (d) => 180 - yScale(d))
+                                .attr("fill", "steelblue");
+                        }
+                        // Line Chart
+                        if (index === 1) {
+                            const data = [[0, 180],
+                                [1, 140],
+                                [2, 80],
+                                [3, 100],
+                                [4, 110],
+                            ];
+                            const xScale = d3.scaleLinear().domain([0, 4]).range([0, 400]);
+                            const yScale = d3.scaleLinear().domain([0, 180]).range([180, 0]);
+
+                            const line = d3
+                                .line()
+                                .x((d) => xScale(d[0]))
+                                .y((d) => yScale(d[1]));
+
+                            const svg = d3
+                                .select(section.querySelector(".chart"))
+                                .append("path")
+                                .datum(data)
+                                .attr("fill", "none")
+                                .attr("stroke", "red")
+                                .attr("stroke-width", 2)
+                                .attr("d", line);
+
+                    }
+                });
+        }
+
+        // Set up the scroller
+        scroller
+            .setup({
+                step: ".parallax-section",
+                offset: 0.5,
+                progress: true,
+            })
+            .onStepEnter((response) => {
+                const index = response.index;
+                const direction = response.direction;
+                // Handle the chart for the current section
+                const section = document.querySelectorAll(".parallax-section")[index];
+                const chartContainer = section.querySelector(".chart-container");
+                // Bar Chart
+                if (index === 0) {
+                    const data = [50, 70, 100, 90, 80];
+                    const xScale = d3
+                        .scaleBand()
+                        .domain(data.map((d, i) => i))
+                        .range([0, 400])
+                        .padding(0.2);
+                    const yScale = d3.scaleLinear().domain([0, 100]).range([180, 0]);
+                    const svg = d3
+                        .select(chartContainer.querySelector(".chart"))
+                        .selectAll("rect")
+                        .data(data)
+                        .enter()
+                        .append("rect")
+                        .attr("x", (d, i) => xScale(i))
+                        .attr("y", (d) => yScale(d))
+                        .attr("width", xScale.bandwidth())
+                        .attr("height", (d) => 180 - yScale(d))
+                        .attr("fill", "steelblue");
+                }
+                // Line Chart
+                if (index === 1) {
+                    const data = [[0, 180],
+                        [1, 140],
+                        [2, 80],
+                        [3, 100],
+                        [4, 110],
+                    ];
+                    const xScale = d3.scaleLinear().domain([0, 4]).range([0, 400]);
+                    const yScale = d3.scaleLinear().domain([0, 180]).range([180, 0]);
+                    const line = d3
+                        .line()
+                        .x((d) => xScale(d[0]))
+                        .y((d) => yScale(d[1]));
+
+                    const svg = d3
+                        .select(chartContainer.querySelector(".chart"))
+                        .append("path")
+                        .datum(data)
+                        .attr("fill", "none")
+                        .attr("stroke", "red")
+                        .attr("stroke-width", 2)
+                        .attr("d", line);
+                }
+            })
+            .onStepExit((response) => {
+                const index = response.index;
+                const direction = response.direction;
+                const section = document.querySelectorAll(".parallax-section")[index];
+                const chartContainer = section.querySelector(".chart-container");
+                d3.select(chartContainer.querySelector(".chart")).selectAll("*").remove();
+            });
+        parallaxContainer.addEventListener("scroll", parallaxScroll);
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Sticky Graphic with Scrollama</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://unpkg.com/scrollama"></script>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        .content-container {
+            display: flex;
+            height: 100%;
+            overflow-x: hidden;
+        }
+
+        .text-container-wrapper {
+            position: relative;
+            width: 33.33%;
+            height: 100%;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+
+        .text-container-wrapper::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, and Opera */
+        }
+
+        .text-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+            padding: 30px;
+            box-sizing: border-box;
+            font-size: 18px;
+        }
+
+        .chart-container {
+            position: fixed;
+            top: 50%;
+            left: 33.33%;
+            width: 66.67%;
+            height: 200px;
+            transform: translateY(-50%);
+        }
+
+        .chart {
+            display: block;
+            margin: 0 auto;
+            width: 100%;
+            height: 100%;
+        }
+
+        .step {
+            height: 100vh;
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="content-container">
+    <div class="text-container-wrapper">
+        <div class="step" data-step="1">
+            <div class="text-container">
+                <h2>Bar Chart with D3</h2>
+                <p>Description for the bar chart</p>
+            </div>
+        </div>
+        <div class="step" data-step="2">
+            <div class="text-container">
+                <h2>Line Chart with D3</h2>
+                <p>Description for the line chart</p>
+            </div>
+        </div>
+    </div>
+    <div class="chart-container">
+        <svg class="chart"></svg>
+    </div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const scroller = scrollama();
+
+        function drawChart(stepIndex) {
+            const svg = d3.select(".chart");
+            svg.selectAll("*").remove();
+
+            if (stepIndex === 1) {
+                const data = [50, 70, 100, 90, 80];
+                const xScale = d3
+                    .scaleBand()
+                    .domain(data.map((d, i) => i))
+                    .range([0, svg.node().clientWidth])
+                    .padding(0.2);
+                const yScale = d3.scaleLinear().domain([0, 100]).range([svg.node().clientHeight, 0]);
+                svg.selectAll("rect")
+                    .data(data)
+                    .enter()
+                    .append("rect")
+                    .attr("x", (d, i) => xScale(i))
+                    .attr("y", (d) => yScale(d))
+                    .attr("width", xScale.bandwidth())
+                    .attr("height", (d) => svg.node().clientHeight - yScale(d))
+                    .attr("fill", "steelblue");
+            } else if (stepIndex === 2) {
+                const data = [                [0, 180],
+                    [1, 140],
+                    [2, 80],
+                    [3, 100],
+                    [4, 110],
+                ];
+                const xScale = d3.scaleLinear().domain([0, 4]).range([0, svg.node().clientWidth]);
+                const yScale = d3.scaleLinear().domain([0, 180]).range([svg.node().clientHeight, 0]);
+                const line = d3
+                    .line()
+                    .x((d) => xScale(d[0]))
+                    .y((d) => yScale(d[1]));
+
+                svg.append("path")
+                    .datum(data)
+                    .attr("fill", "none")
+                    .attr("stroke", "red")
+                    .attr("stroke-width", 2)
+                    .attr("d", line);
+            }
+        }
+
+        // Set up the scroller
+        scroller
+            .setup({
+                step: ".step",
+                offset: 0.5,
+                progress: true,
+            })
+            .onStepEnter((response) => {
+                drawChart(response.index + 1);
+            });
+    });
+</script>
+</body>
+</html>
