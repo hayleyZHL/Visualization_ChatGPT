@@ -22,7 +22,9 @@ body, html {
     background-position: center;
     background-size: cover;
 }
-#sectionIntro {background-image: url("https://user-images.githubusercontent.com/7003853/205509643-2283f0fe-3643-4b74-98f6-a0f2489d75ef.gif");}
+/*#sectionIntro {background-image: url("https://user-images.githubusercontent.com/7003853/205509643-2283f0fe-3643-4b74-98f6-a0f2489d75ef.gif");}*/
+
+#sectionIntro {background-image: url("https://blog.immersive-insiders.com/content/images/2022/12/2.gif");}
 #section0 { background-image: url('turing4.jpg'); }  /*background-image: url('https://static01.nyt.com/images/2018/05/10/briefing/cn-turing/cn-turing-jumbo.jpg');*/
 /*#section01 { background-image: url("https://automationswitch.com/wp-content/uploads/2021/01/automation-switch-geoff-hint-3-1024x499.png"); }*/
 #section01 { background-image: url("https://cdn-images-1.medium.com/max/2000/1*ILJI87KKC7Y3y5ExxbGA8A.png"); }
@@ -79,8 +81,9 @@ body, html {
 }
 
 .data-info {
+    color: cadetblue;
     font-weight: bold;
-    font-size: 24px;
+    /*font-size: 20px;*/
     margin-top: 10px;
 }
 
