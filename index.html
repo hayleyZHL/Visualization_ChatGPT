@@ -28,7 +28,7 @@
     </div>
 
     <!-- section 1, Turing & Turing Test -->
-    <div class="parallax-section" id="section0">
+    <div class="parallax-section" id="section1">
         <div class="text-container">
             <h2>The Origin of AI: Alan Turing's Legacy and the Turing Test</h2>
             <p>
@@ -52,7 +52,7 @@
         </div>
     </div>
     <!-- section 2, Hinton & Neuron Network -->
-    <div class="parallax-section" id="section01">
+    <div class="parallax-section" id="section2">
         <div class="chart-container" style="visibility: hidden;">
             <svg class="chart" height="200" width="700"></svg> <!-- Invisible placeholder -->
         </div>
@@ -69,8 +69,9 @@
             </p>
         </div>
     </div>
+
     <!-- section 3, What is ChatGPT? -->
-    <div class="parallax-section" id="section1">
+    <div class="parallax-section" id="section3">
         <div class="text-container">
             <h2>What is ChatGPT?</h2>
             <p>ChatGPT is a chatbot (or, in technical terms, a ‘large language model’) created by US-based artificial intelligence company OpenAI.</p>
@@ -78,7 +79,6 @@
                 many books, all of Wikipedia — to provide you with a human-like answer to it. </p>
             <p>You can also ask ChatGPT to create content for you — it can write poems, create computer code, translate languages,
                 provide article structures and do much else besides.</p>
-
         </div>
         <p>
             <img src="https://static.wixstatic.com/media/a89add_3d73f7e43cff4f37bdf0af4772ef6595~mv2.gif" width="200" height="200" style="float: outside">
@@ -111,7 +111,9 @@
             </p>
         </div>
     </div>
-    <div class="parallax-section" id="section2">
+
+    <!-- section 4, How many people use ChatGPT? -->
+    <div class="parallax-section" id="section4">
         <div class="text-container">
             <h2>How many people use ChatGPT?
             </h2>
@@ -142,14 +144,17 @@
         </div>
 
     </div>
+
     <!-- section 6, What was the size of the dataset used for training ChatGPT? -->
     <div class="parallax-section" id="section6">
         <div class="text-container">
             <h2>ChatGPT Training Data Size</h2>
-            <p>Description</p>
+            <p>The dataset for training ChatGPT-4 — the latest version of ChatGPT — is estimated to consist of 100 trillion parameters, more than 5 times larger than the training data for ChatGPT-3. </p>
+            <p>Chat-GPT-4 training data included feedback from users of ChatGPT-3 as well as feedback from over 50 AI safety and security experts.</p>
         </div>
         <div class="chart-container"> <svg class="chart" height="400" width="800"></svg> </div>
     </div>
+
     <!-- section 7,  How big is the artificial intelligence market? -->
     <div class="parallax-section" id="section7">
         <div class="text-container">
@@ -158,6 +163,7 @@
         </div>
         <div class="chart-container"> <svg class="chart" height="200" width="400"></svg> </div>
     </div>
+
     <!-- section 8, Will I lose my job because of ChatGPT? -->
     <div class="parallax-section" id="section8">
         <div class="text-container">
@@ -177,7 +183,9 @@
 </div>
 
 <script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="https://d3js.org/d3-force.v3.min.js"></script>
 <script src="https://unpkg.com/scrollama"></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/visualSedimentation/0.1.1/visualSedimentation.min.js"></script>-->
 
 <script>
     const lineData = [  // in million
@@ -193,11 +201,12 @@
         {company: "Netflix", duration: "3.5 years", launched: 1999},
     ];
     const trainingSizeData = [  // in million
-        {model: "ChatGPT 1", size: "117 Million", description: "117 Million Parameters"},
-        {model: "ChatGPT 2", size: "1.5 Billion", description: "1.5 Billion Parameters"},
-        {model: "ChatGPT 3", size: "175 Billion", description: "175 Billion Parameters"},
-        {model: "ChatGPT 4", size: "100 Trillion", description: "100 Trillion Parameters"}
+        {model: "ChatGPT 1", size: 10, description: "117 Million Parameters"},
+        {model: "ChatGPT 2", size: 18, description: "1.5 Billion Parameters"},
+        {model: "ChatGPT 3", size: 30, description: "175 Billion Parameters"},
+        {model: "ChatGPT 4", size: 100, description: "100 Trillion Parameters"}
     ];
+
     document.addEventListener('DOMContentLoaded', () => {
         // Initialize Scrollama
         const scroller = scrollama();
@@ -209,26 +218,26 @@
                 const sectionTop = section.offsetTop;
                 const sectionHeight = section.offsetHeight;
                 if (scrollTop + windowHeight >= sectionTop && scrollTop <= sectionTop + sectionHeight) {
-                    const translateAmount = (scrollTop - sectionTop) / 2;
-                    const translateAmountText =  -(scrollTop - sectionTop)/3.7;
+                    const translateAmount = Math.max((scrollTop - sectionTop) / 2);
+                    // const translateAmount = Math.min(Math.max((scrollTop - sectionTop) / 2, 0), sectionHeight / 2)
+                    console.log("section: ", section)
+                    console.log("sectionTop: " + sectionTop)
+                    console.log("translateAmount: "+ translateAmount)
+                    const translateAmountText =  -(scrollTop - sectionTop)/3;
                     const container = section.querySelector('.chart-container') || section.querySelector('.quiz-container');
                     const containerText = section.querySelector('.text-container');
-                    // Prevent container from exceeding the section's top
-                    // if (scrollTop >= sectionTop) {
-                        container.style.transform = `translateY(${translateAmount}px)`;
-                        containerText.style.transform = `translateY(${translateAmountText}px)`;
-                    // } else {
-                    //     container.style.transform = `translateY(0)`;
-                    //     containerText.style.transform = `translateY(0)`;
-                    // }
+                    console.log("container before: " + container.offsetTop);
+                    container.style.transform = `translateY(${translateAmount}px)`;
+                    containerText.style.transform = `translateY(${translateAmountText}px)`;
+                    console.log("container after: " + container.offsetTop);
+
                 }
             });
         }
 
         drawLineChart(lineData);
         drawBarChart(competitorData);
-        drawBubbleChart(trainingSizeData);
-
+        drawCircles(trainingSizeData);
         // Scrollama configuration
         scroller
             .setup({
@@ -258,9 +267,9 @@
     function handleStepProgress(element, index, progress) {
         // Line Chart
         if (index === 4) {
-            let lineSvg = d3.select('#section2 .chart').selectAll('path')
+            let lineSvg = d3.select('#section4 .chart').selectAll('path')
             const pathLength = lineSvg.node().getTotalLength();
-            lineSvg.attr('stroke-dashoffset', pathLength * (1 - progress * 2));
+            lineSvg.attr('stroke-dashoffset', pathLength * (1 - progress * 2 * 1.1));
             // Update data-info text based on animation progress
             const dataIndex = Math.floor(progress * 2 * (lineData.length - 1));
             const dataValue = lineData[dataIndex].users;
@@ -285,20 +294,34 @@
             barSvg.each(function (d) {
                 const bar = d3.select(this);
                 const targetHeight = yScaleBar(0) - yScaleBar(durationToDays(d.duration));
-                bar.attr('height', targetHeight * progress * 2)
-                    .attr('y', (height - targetHeight * progress * 2)); // 修改此处
+                bar.attr('height', targetHeight * progress * 2 * 1.1)
+                    .attr('y', (height - targetHeight * progress * 2  * 1.1));
             });
         }
-
+        // Circles
+        if (index === 6) {
+            // const sizeScale = d3.scaleLinear()
+            //     .domain(d3.extent(trainingSizeData, d => parseCircleSize(d.size)))
+            //     .range([10, 120]);
+            let circlesSvg = d3.select('#section6 .chart').selectAll('circle');
+            circlesSvg.each(function (d) {
+                const circle = d3.select(this);
+                const originalRadius = d.size;
+                const radiusScale = progress * 2 * 1.1;
+                const targetRadius = originalRadius * radiusScale;
+                circle.attr('r', targetRadius);
+            });
+        }
     }
     function handleStepExit(element, index) {
-        // Hide the GIF when section1 is no longer visible
+        // Hide the GIF when section3 is no longer visible
         if (index === 3) {
             // const quiz = element.querySelector('.quiz-container');
             // quiz.style.opacity = 0;
         }
     }
 
+    // Draw Charts
     function drawLineChart(lineChartData) {
         const parseDate = d3.timeParse("%B, %Y");
         const margin = { top: 50, right: 20, bottom: 50, left: 50 };
@@ -325,7 +348,7 @@
             .y(d => yScaleLine(d.users))
             .curve(d3.curveMonotoneX);
 
-        const chartSvg = d3.select('#section2 .chart')
+        const chartSvg = d3.select('#section4 .chart')
             .attr('width', width + margin.left + margin.right)
             .attr('height', height + margin.top + margin.bottom)
             .append('g')
@@ -355,7 +378,7 @@
         lineChartSvg.attr('stroke-dasharray', `${pathLength} ${pathLength}`)
             .attr('stroke-dashoffset', pathLength);
 
-        const circles = chartSvg.selectAll('circle')
+        chartSvg.selectAll('circle')
             .data(lineChartData)
             .enter()
             .append('circle')
@@ -376,12 +399,6 @@
             .on('mouseout', () => {
                 d3.select('.tooltip').remove();
             });
-
-        // Animate the line
-        lineChartSvg.transition()
-            .duration(2000)
-            .ease(d3.easeLinear)
-            .attr('stroke-dashoffset', 0);
 
         // Add chart title
         chartSvg.append('text')
@@ -412,18 +429,125 @@
             .style('font-size', '16px')
             .text('#Users (Million)');
     }
+    // function drawBarChart(competitorData) {
+    //     const margin = { top: 50, right: 20, bottom: 50, left: 80 };
+    //     const width = 650 - margin.left - margin.right;
+    //     const height = 370 - margin.top - margin.bottom;
+    //     const fragmentCount = 10;
+    //
+    //     const xScaleBar = d3.scaleBand().domain(competitorData.map(d => d.company)).range([0, width]).padding(0.2);
+    //     const yScaleBar = d3.scaleLinear()
+    //         .domain([0, d3.max(competitorData, d => durationToDays(d.duration))])
+    //         .range([height, 0]);
+    //
+    //     const colorScale = d3.scaleOrdinal(d3.schemeCategory10);
+    //
+    //     const yAxisTicks = d3.axisLeft(yScaleBar)
+    //         .tickValues(yScaleBar.ticks().concat(yScaleBar.domain()))
+    //         .tickFormat(d => {
+    //             if (d % 365 === 0) return `${d / 365} years`;
+    //             if (d % 30 === 0) return `${d / 30} months`;
+    //             return `${d} days`;
+    //         });
+    //
+    //     const chart = d3.select('#section5 .chart')
+    //         .attr('width', width + margin.left + margin.right)
+    //         .attr('height', height + margin.top + margin.bottom)
+    //         .append('g')
+    //         .attr('transform', `translate(${margin.left}, ${margin.top})`);
+    //
+    //     // Add title and axis titles
+    //     chart.append('text')
+    //         .attr('class', 'chart-title')
+    //         .attr('x', width / 2)
+    //         .attr('y', -20)
+    //         .style('text-anchor', 'middle')
+    //         .style('font-size', '18px')
+    //         .text('Time to Reach 1 Million Users');
+    //
+    //     chart.append('text')
+    //         .attr('class', 'axis-title')
+    //         .attr('x', -height / 2)
+    //         .attr('y', -67)
+    //         .attr('transform', 'rotate(-90)')
+    //         .style('text-anchor', 'middle')
+    //         .style('font-size', '12px')
+    //         .text('Duration');
+    //
+    //     chart.append('text')
+    //         .attr('class', 'axis-title')
+    //         .attr('x', width / 2)
+    //         .attr('y', height + 40)
+    //         .style('text-anchor', 'middle')
+    //         .style('font-size', '12px')
+    //         .text('Platform');
+    //
+    //     const tooltip = chart
+    //         .append('g')
+    //         .style('opacity', 0)
+    //         .style('font-size', '12px')
+    //         .style('text-anchor', 'middle');
+    //
+    //     tooltip
+    //         .append('text')
+    //         .attr('class', 'tooltip-text tooltip-duration')
+    //         .attr('y', -25);
+    //
+    //     tooltip
+    //         .append('text')
+    //         .attr('class', 'tooltip-text tooltip-launched')
+    //         .attr('y', -10);
+    //
+    //     chart.selectAll('.bar-fragment')
+    //         .data(competitorData.flatMap(d => Array(fragmentCount).fill(d)))
+    //         .join('rect')
+    //         .attr('class', 'bar-fragment')
+    //         .attr('x', (d, i) => xScaleBar(d.company))
+    //         .attr('width', xScaleBar.bandwidth())
+    //         .attr('fill', (d, i) => colorScale(competitorData.indexOf(d)))
+    //         .attr('y', height)
+    //         .attr('height', 0)
+    //         .on('mouseover', (event, d) => {
+    //             d3.select(event.currentTarget)
+    //                 .attr('fill', 'darkorange');
+    //             tooltip
+    //                 .style('opacity', 1)
+    //                 .attr('transform', `translate(${xScaleBar(d.company) + xScaleBar.bandwidth() / 2}, ${yScaleBar(durationToDays(d.duration))})`);
+    //             tooltip.select('.tooltip-launched')
+    //                 .text(`Launched in ${d.launched}`);
+    //             tooltip.select('.tooltip-duration')
+    //                 .text(`Took ${d.duration}`);
+    //         })
+    //         .on('mouseout', function(event, d) {
+    //             d3.select(event.currentTarget)
+    //                 .attr('fill', colorScale(competitorData.indexOf(d)));
+    //             tooltip.style('opacity', 0);
+    //         });
+    //
+    //     chart.append('g')
+    //         .attr('transform', `translate(0, ${height})`)
+    //         .call(d3.axisBottom(xScaleBar));
+    //
+    //     chart.append('g')
+    //         .call(yAxisTicks);
+    //
+    //     // Simulate the visual sedimentation effect
+    //     d3.select('#section5 .chart').selectAll('.bar-fragment')
+    //         .transition()
+    //         .duration(300)
+    //         .delay((d, i) => 300 * (i % fragmentCount) + 300 * Math.floor(i / fragmentCount))
+    //         .attr('y', (d, i) => {
+    //             const targetHeight = yScaleBar(0) - yScaleBar(durationToDays(d.duration));
+    //             const fragmentHeight = targetHeight / fragmentCount;
+    //             return yScaleBar(durationToDays(d.duration)) + fragmentHeight * (i % fragmentCount);
+    //         })
+    //         .attr('height', (d, i) => {
+    //             const targetHeight = yScaleBar(0) - yScaleBar(durationToDays(d.duration));
+    //             return targetHeight / fragmentCount;
+    //         });
+    // }
 
-    function durationToDays(duration) {
-        if (duration.includes("days")) {
-            return parseFloat(duration);
-        } else if (duration.includes("months")) {
-            return parseFloat(duration) * 30;
-        } else if (duration.includes("years")) {
-            return parseFloat(duration) * 365;
-        }
-        return 0;
-    }
-    function drawBarChart(competitorData) {
+            function drawBarChart(competitorData) {
         const margin = { top: 50, right: 20, bottom: 50, left: 80 };
         const width = 650 - margin.left - margin.right;
         const height = 370 - margin.top - margin.bottom;
@@ -498,8 +622,9 @@
             .attr('width', xScaleBar.bandwidth())
             .attr('fill', (d, i) => colorScale(i))
             .attr('y', d => yScaleBar(durationToDays(d.duration)))
-            .attr('height', d => height - yScaleBar(durationToDays(d.duration)))
-            .on('mouseover', (event, d) => {
+            // .attr('height', d => (height - yScaleBar(durationToDays(d.duration))))
+            .attr('height', 0)
+                .on('mouseover', (event, d) => {
                 d3.select(event.currentTarget)
                     .attr('fill', 'darkorange');
                 tooltip
@@ -524,6 +649,90 @@
             .call(yAxisTicks);
 
     }
+
+    function drawCircles(trainingSizeData) {
+        const margin = { top: 30, right: 20, bottom: 30, left: 50 };
+        const width = 800 - margin.left - margin.right;
+        const height = 400 - margin.top - margin.bottom;
+
+        const chartSvg = d3.select('#section6 .chart')
+            .attr('width', width + margin.left + margin.right)
+            .attr('height', height + margin.top + margin.bottom)
+            .append('g')
+            .attr('transform', `translate(${margin.left}, ${margin.top})`);
+
+        const circles = chartSvg.selectAll('circle')
+            .data(trainingSizeData)
+            .enter()
+            .append('circle')
+            .attr('cx', (d, i) => width / trainingSizeData.length * (i + 0.5))
+                .attr('cy', height / 2)
+            .attr('r', 0)
+            .attr('fill', 'darkseagreen');
+
+            // Add model name inside the circle
+        const textLabels = chartSvg.selectAll('text')
+            .data(trainingSizeData)
+            .join('text')
+            .attr('x', (d, i) => width / trainingSizeData.length * (i + 0.5))
+            .attr('y', (d, i) => {
+                const circleCenterY = height / 2;
+                const textSize = 14; // font-size from .attr('font-size', '14px')
+                if (d.size > 50) {
+                    return circleCenterY; // Inside the circle
+                } else {
+                    return circleCenterY + d.size + textSize / 2 + 10; // Below the circle (with a small margin)
+                }
+            })
+            .text(d => d.model)
+            .attr('text-anchor', 'middle')
+            .attr('dominant-baseline', 'middle')
+            .attr('fill', 'black')
+            .attr('font-size', '14px');
+
+        // Add a simple shadow effect
+        const defs = chartSvg.append('defs');
+
+        const filter = defs.append('filter')
+            .attr('id', 'shadow')
+            .attr('x', '-50%')
+            .attr('y', '-50%')
+            .attr('width', '200%')
+            .attr('height', '200%');
+
+        filter.append('feOffset')
+            .attr('result', 'offOut')
+            .attr('in', 'SourceAlpha')
+            .attr('dx', 3)
+            .attr('dy', 3);
+
+        filter.append('feGaussianBlur')
+            .attr('result', 'blurOut')
+            .attr('in', 'offOut')
+            .attr('stdDeviation', 5);
+
+        filter.append('feBlend')
+            .attr('in', 'SourceGraphic')
+            .attr('in2', 'blurOut')
+            .attr('mode', 'normal');
+
+        circles.style('filter', 'url(#shadow)');
+            // Add hover behavior for showing description
+            circles.on('mouseover', (event, d) => {
+                const tooltip = d3.select('body')
+                    .append('div')
+                    .attr('class', 'tooltip')
+                    .text(d.description);
+
+                tooltip.style('left', `${event.pageX}px`)
+                    .style('top', `${event.pageY}px`);
+            })
+                .on('mouseout', () => {
+                    d3.select('.tooltip').remove();
+                });
+    }
+
+    // Helper Functions
     function convertSizeToBillion(size) {
         if (size.includes('Million')) {
             return parseFloat(size) / 1000;
@@ -531,67 +740,16 @@
             return parseFloat(size) * 1000;
         }
         return parseFloat(size);
-    };
-
-    function drawBubbleChart() {
-        trainingSizeData.forEach(d => {
-            d.sizeBillion = convertSizeToBillion(d.size);
-        });
-
-        const width = 800;
-        const height = 400;
-
-        const svg = d3.select('#section6 .chart-container')
-            .append('svg')
-            .attr('class', 'chart')
-            .attr('width', width)
-            .attr('height', height);
-
-        const simulation = d3.forceSimulation(trainingSizeData)
-            .force('charge', d3.forceManyBody().strength(50))
-            .force('center', d3.forceCenter(width / 2, height / 2))
-            .force('collision', d3.forceCollide().radius(d => Math.cbrt(d.sizeBillion) * 5))
-            .on('tick', ticked);
-
-        const node = svg.selectAll('.node')
-            .data(trainingSizeData)
-            .enter().append('g')
-            .attr('class', 'node')
-            .call(d3.drag()
-                .on("start", dragstarted)
-                .on("drag", dragged)
-                .on("end", dragended));
-
-        node.append('circle')
-            .attr('r', d => Math.cbrt(d.sizeBillion) * 5)
-            .style('fill', 'steelblue')
-            .style('opacity', 0.8);
-
-        node.append('text')
-            .attr('text-anchor', 'middle')
-            .attr('dy', '.3em')
-            .text(d => d.model);
-
-        function ticked() {
-            node.attr('transform', d => `translate(${d.x}, ${d.y})`);
+    }
+    function durationToDays(duration) {
+        if (duration.includes("days")) {
+            return parseFloat(duration);
+        } else if (duration.includes("months")) {
+            return parseFloat(duration) * 30;
+        } else if (duration.includes("years")) {
+            return parseFloat(duration) * 365;
         }
-
-        function dragstarted(event) {
-            if (!event.active) simulation.alphaTarget(0.3).restart();
-            event.subject.fx = event.subject.x;
-            event.subject.fy = event.subject.y;
-        }
-
-        function dragged(event) {
-            event.subject.fx = event.x;
-            event.subject.fy = event.y;
-        }
-
-        function dragended(event) {
-            if (!event.active) simulation.alphaTarget(0);
-            event.subject.fx = null;
-            event.subject.fy = null;
-        }
+        return 0;
     }
     function showQuiz() {
         document.getElementById("ready").style.display = "none";
@@ -602,6 +760,21 @@
         document.getElementById("reveal-image").style.display = "block";
         document.getElementById("reveal-image").style.opacity = "1";
     }
+    // function parseCircleSize(sizeStr) {
+    //     const sizeParts = sizeStr.split(' ');
+    //     const sizeValue = parseFloat(sizeParts[0]);
+    //     const sizeUnit = sizeParts[1];
+    //
+    //     if (sizeUnit === 'Trillion') {
+    //         return sizeValue * 1e12;
+    //     } else if (sizeUnit === 'Billion') {
+    //         return sizeValue * 1e9;
+    //     } else if (sizeUnit === 'Million') {
+    //         return sizeValue * 1e6;
+    //     } else {
+    //         return sizeValue;
+    //     }
+    // }
 </script>
 </body>
 </html>
