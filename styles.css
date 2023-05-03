@@ -2,7 +2,16 @@ body, html {
     margin: 0;
     padding: 0;
     height: 100%;
-    font-family: Arial, sans-serif;
+    font-family: 'Google Sans', sans-serif; /* Set the font family to Google Sans */
+    color: white;
+    /*font-family: Arial, sans-serif;*/
+}
+.title-highlight {
+    font-size: 46px;
+    color: #4ca184;
+}
+.text-highlight {
+    font-weight:bold;
 }
 .parallax-container {
     position: relative;
@@ -18,9 +27,16 @@ body, html {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-color: #f0f0f0;
+    /*background-color: #f0f0f0;*/
+    background-color: #464354;
     background-position: center;
     background-size: cover;
+}
+
+#section7 {
+    height: 200%;
+    flex-direction: column;
+    justify-content: center;
 }
 /*#sectionIntro {background-image: url("https://user-images.githubusercontent.com/7003853/205509643-2283f0fe-3643-4b74-98f6-a0f2489d75ef.gif");}*/
 
@@ -29,19 +45,33 @@ body, html {
 /*#section2 { background-image: url("https://automationswitch.com/wp-content/uploads/2021/01/automation-switch-geoff-hint-3-1024x499.png"); }*/
 #section2 { background-image: url("https://cdn-images-1.medium.com/max/2000/1*ILJI87KKC7Y3y5ExxbGA8A.png"); }
 
-#section3,#section5,#section7,#section9 { background-color: #e0e0e0; }
+/*#section3,#section5,#section7,#section9 { background-color: #373542; }*/
+#section3,#section5,#section9 { background-color: #373542; }
 
 .text-container {
     max-width: 450px;
-    padding: 20px;
-    padding: 20px;
+    padding: 30px;
     box-sizing: border-box;
     font-size: 18px;
-    background-color: rgba(255, 255, 255, 0.6); /* semi-transparent white background */
+    color: black;
+    /*font-family: 'Courier New', Courier, monospace; !* Set the font family to Courier New *!*/
+    background-color: rgba(255, 255, 255, 0.8); /* semi-transparent white background */
     border-radius: 5px; /* rounded corners */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* subtle shadow for depth */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* subtle shadow for depth */
     word-wrap: break-word; /* wrap long words to the next line */
 }
+
+#introText {
+    max-width: 370px;
+}
+
+#section7 .text-container {
+    max-width: 600px;
+    color: white;
+    background-color: rgba(255, 255, 255, 0); /* semi-transparent white background */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0); /* subtle shadow for depth */
+}
+
 
 /*.chart-container { max-width: 40%; }*/
 .chart-container {
@@ -52,6 +82,10 @@ body, html {
 .chart {
     display: block;
     margin: 0 auto;
+    color: white;
+}
+.chart text {
+    fill: white;
 }
 .gif-container {
     max-width: 40%;
@@ -74,15 +108,18 @@ body, html {
     height: auto;
     padding: 5px;
     font: 12px sans-serif;
-    background: lightsteelblue;
+    color: black;
+    background: white;
+    opacity: 0.7;
     border: 0px;
     border-radius: 8px;
     pointer-events: none;
 }
 
 .data-info {
-    color: cadetblue;
+    color: #4ca184;
     font-weight: bold;
+    font-style: italic;
     /*font-size: 20px;*/
     margin-top: 10px;
 }
@@ -97,6 +134,7 @@ body, html {
     box-shadow: 0 0 10px rgba(236, 242, 252, 0.86), 0 5px 15px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     word-wrap: break-word;
+    color: black;
 }
 
 .quiz-container:hover {
@@ -114,6 +152,8 @@ body, html {
     justify-content: center;
 }
 
+
+
 .option, .start-btn {
     background-color: #a9a9a9;
     color: #ffffff;
@@ -122,7 +162,9 @@ body, html {
     cursor: pointer;
     margin: 0 10px;
     transition: all 0.3s ease;
+    cursor: pointer;
 }
+
 
 .option:hover, .start-btn:hover {
     background-color: #8c8c8c;
