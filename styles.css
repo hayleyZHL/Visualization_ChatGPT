@@ -46,6 +46,8 @@ body, html {
 #section2 { background-image: url("https://cdn-images-1.medium.com/max/2000/1*ILJI87KKC7Y3y5ExxbGA8A.png"); }
 
 /*#section3,#section5,#section7,#section9 { background-color: #373542; }*/
+/*#section3,#section5,#section7,#section9 { background-color: #373542; }*/
+
 #section3,#section5,#section9 { background-color: #373542; }
 
 .text-container {
@@ -111,7 +113,7 @@ body, html {
     color: black;
     background: white;
     opacity: 0.7;
-    border: 0px;
+    border: 0;
     border-radius: 8px;
     pointer-events: none;
 }
