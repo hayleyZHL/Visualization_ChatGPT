@@ -169,9 +169,27 @@ body, html {
 }
 
 
+
 .option:hover, .start-btn:hover {
     background-color: #a8d5c7;
     transform: translateY(-3px);
+}
+
+#section7 .option:hover, .start-btn:hover {
+    background-color: #a8d5c7;
+    transform: translateY(-3px);
+}
+
+#section7 .option, .start-btn {
+    background-color: #464354;
+    color: white;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin: 0 10px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    opacity: 0.95;
 }
 
 .feedback {

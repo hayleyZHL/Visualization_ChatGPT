@@ -743,7 +743,7 @@
 
     function drawSendimentationBars(dataAIMarket) {
 
-        const margin = { top: 40, right: 40, bottom: 0, left: 40 };
+        const margin = { top: 40, right: 30, bottom: 0, left: 30 };
         const screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
         const width = screenWidth - margin.left - margin.right;
         const height = 450 - margin.top - margin.bottom;
@@ -767,8 +767,8 @@
             .domain(d3.extent(dataAIMarket, d => d.scaledMaxValue))
             .range([0, height]);
 
-        const numSegments = 180;
-        const tokenSize = height / numSegments;
+        const numSegments = 120;
+        const tokenSize = (height / numSegments);
 
         dataAIMarket.forEach(d => {
             d.maxTokenNumValue = Math.floor(y(d.scaledMaxValue) / tokenSize);
@@ -840,7 +840,7 @@
             .enter().append("text")
             .attr("class", "category-label")
             .attr("x", d => x(d.category) + x.bandwidth() / 2)
-            .attr("y", 0)
+            .attr("y", -25)
             .attr("text-anchor", "middle")
             .text(d => d.category)
             .attr("opacity", 0);
@@ -922,7 +922,7 @@
             tokens.push(token);
 
             // Check if the bar has more than 10 tokens, and if so, remove the oldest one
-            if (tokens.length > 5) {
+            if (tokens.length > 10) {
                 tokens[0].disappearing = true;
                 disappearToken(tokens[0]);
                 tokens.shift(); // Remove the first token from the array
@@ -976,7 +976,7 @@
         function startAnimation() {
             categoryLabels.transition()
                 .duration(2500)
-                .attr("opacity", 1);
+                .attr("opacity", 0.9);
             intervalId = setInterval(() => {
                 if (availableCategories.length === 0) {
                     clearInterval(intervalId); // Stop the interval when all bars reached the top
@@ -985,8 +985,15 @@
                     const categoryIndex = availableCategories[randomIndex];
 
                     addToken(categoryIndex);
-
                     if (barReachedTop(categoryIndex)) {
+                        // let bar = bars.filter((d, i) => i === categoryIndex);
+                        // const maxValue = dataAIMarket[categoryIndex].maxValue;
+                        // bar.append("text")
+                        //     .attr("class", "max-value")
+                        //     .attr("x", x.bandwidth() / 2)
+                        //     .attr("y", dataAIMarket[categoryIndex].value * tokenSize * 2 - 20)
+                        //     .attr("text-anchor", "middle")
+                        //     .text(maxValue + 'B');
                         availableCategories.splice(randomIndex, 1);
                     }
                 }
