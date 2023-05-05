@@ -2215,59 +2215,621 @@
 
 <!--</script>-->
 
+
+
+
+
+<!--barchart growing one by one-->
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Animated Bar Chart</title>-->
+<!--    <script src="https://d3js.org/d3.v6.min.js"></script>-->
+<!--    <style>-->
+<!--        /* Add your custom styles here */-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<svg id="bar-chart"></svg>-->
+
+<!--<script>-->
+<!--    const data = [-->
+<!--        { label: "A", value: 10 },-->
+<!--        { label: "B", value: 15 },-->
+<!--        { label: "C", value: 30 },-->
+<!--        { label: "D", value: 20 },-->
+<!--    ];-->
+
+<!--    const width = 800;-->
+<!--    const height = 400;-->
+<!--    const margin = { top: 20, right: 20, bottom: 30, left: 40 };-->
+
+<!--    const svg = d3.select("#bar-chart")-->
+<!--        .attr("width", width)-->
+<!--        .attr("height", height);-->
+
+<!--    const x = d3.scaleBand()-->
+<!--        .domain(data.map(d => d.label))-->
+<!--        .range([margin.left, width - margin.right])-->
+<!--        .padding(0.1);-->
+
+<!--    const y = d3.scaleLinear()-->
+<!--        .domain([0, d3.max(data, d => d.value)])-->
+<!--        .nice()-->
+<!--        .range([height - margin.bottom, margin.top]);-->
+
+<!--    const xAxis = svg.append("g")-->
+<!--        .attr("transform", `translate(0,${height - margin.bottom})`)-->
+<!--        .call(d3.axisBottom(x));-->
+
+<!--    const yAxis = svg.append("g")-->
+<!--        .attr("transform", `translate(${margin.left},0)`)-->
+<!--        .call(d3.axisLeft(y));-->
+
+<!--    const bar = svg.selectAll(".bar")-->
+<!--        .data(data)-->
+<!--        .join("rect")-->
+<!--        .attr("class", "bar")-->
+<!--        .attr("x", d => x(d.label))-->
+<!--        .attr("width", x.bandwidth())-->
+<!--        .attr("y", height - margin.bottom)-->
+<!--        .attr("height", 0)-->
+<!--        .style("fill", "#69b3a2"); // Or any other color you'd like-->
+
+<!--    bar.transition()-->
+<!--        .duration(1000)-->
+<!--        .ease(d3.easeCubicInOut)-->
+<!--        .delay((d, i) => i * 200)-->
+<!--        .attr("y", d => y(d.value))-->
+<!--        .attr("height", d => y(0) - y(d.value));-->
+
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+<!--    <meta charset="utf-8">-->
+<!--    <style>-->
+<!--        .bar {-->
+<!--            fill: steelblue;-->
+<!--        }-->
+
+<!--        .token {-->
+<!--            fill: #ff7f0e;-->
+<!--            opacity: 0.8;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<script src="https://d3js.org/d3.v6.min.js"></script>-->
+<!--<script>-->
+<!--    const data = [-->
+<!--        { category: 'AI for retail', value: 0, maxValue: 57.8 },-->
+<!--        { category: 'AI for education', value: 0, maxValue: 23.92 },-->
+<!--        { category: 'AI for transportation', value: 0, maxValue: 14.79 },-->
+<!--        { category: 'AI in healthcare', value: 0, maxValue: 188 }-->
+<!--    ];-->
+
+<!--    const margin = { top: 20, right: 20, bottom: 40, left: 40 };-->
+<!--    const width = 600 - margin.left - margin.right;-->
+<!--    const height = 400 - margin.top - margin.bottom;-->
+<!--    const tokenSize = 6;-->
+
+<!--    const x = d3.scaleBand()-->
+<!--        .domain(data.map(d => d.category))-->
+<!--        .rangeRound([0, width])-->
+<!--        .padding(0.1);-->
+
+<!--    // const y = d3.scaleLinear()-->
+<!--    //     .domain([0, d3.max(data, d => d.maxValue) * (tokenSize * 2)])-->
+<!--    //     .range([height, 0]);-->
+
+<!--    const y = d3.scaleLinear()-->
+<!--        .domain([0, d3.max(data, d => d.maxValue) * (tokenSize * 2)])-->
+<!--        .range([height, 0]);-->
+
+<!--    // const y = d3.scaleLinear()-->
+<!--    //     .domain([0, Math.max(...data.map(d => d.maxValue))])-->
+<!--    //     .range([height, 0]);-->
+
+<!--    const svg = d3.select("body")-->
+<!--        .append("svg")-->
+<!--        .attr("width", width + margin.left + margin.right)-->
+<!--        .attr("height", height + margin.top + margin.bottom)-->
+<!--        .append("g")-->
+<!--        .attr("transform", `translate(${margin.left}, ${margin.top})`);-->
+
+<!--    const bars = svg.selectAll(".bar")-->
+<!--        .data(data)-->
+<!--        .enter().append("rect")-->
+<!--        .attr("class", "bar")-->
+<!--        .attr("x", d => x(d.category))-->
+<!--        .attr("y", height)-->
+<!--        .attr("width", x.bandwidth())-->
+<!--        .attr("height", 0);-->
+
+<!--    const tokens = [];-->
+
+<!--    function ticked() {-->
+<!--        svg.selectAll(".token")-->
+<!--            .attr("cx", d => d.x)-->
+<!--            .attr("cy", d => d.y);-->
+<!--    }-->
+
+<!--    const tokenMap = new Map();-->
+<!--    const simulationMap = new Map();-->
+
+<!--    data.forEach((d) => {-->
+<!--        tokenMap.set(d.category, []);-->
+
+<!--        const simulation = d3.forceSimulation()-->
+<!--            .force("x", d3.forceX().strength(0.07).x((token) => token.targetX))-->
+<!--            .force("y", d3.forceY().strength(0.28).y((token) => token.targetY))-->
+<!--            .force("collide", d3.forceCollide(tokenSize))-->
+<!--            .on("tick", () => {-->
+<!--                limitBarWidth(d.category);-->
+<!--                ticked();-->
+<!--            });-->
+
+
+<!--        simulationMap.set(d.category, simulation);-->
+<!--    });-->
+
+<!--    function limitBarWidth(category) {-->
+<!--        const tokens = tokenMap.get(category);-->
+
+<!--        for (const token of tokens) {-->
+<!--            const barX = x(token.category);-->
+<!--            const barWidth = x.bandwidth();-->
+<!--            const xMin = barX + token.radius;-->
+<!--            const xMax = barX + barWidth - token.radius;-->
+
+<!--            if (token.x < xMin) {-->
+<!--                token.x = xMin;-->
+<!--            }-->
+<!--            if (token.x > xMax) {-->
+<!--                token.x = xMax;-->
+<!--            }-->
+
+<!--            // Update token.targetY to keep it above the bar-->
+<!--            // const barHeight = data.find(d => d.category === token.category).value * (tokenSize * 2);-->
+<!--            // const barY = height - barHeight;-->
+<!--            // const yMax = barY - token.radius*3;-->
+<!--            const barHeight = height - y(data.find(d => d.category === token.category).value * scaleFactor);-->
+<!--            const barY = y(data.find(d => d.category === token.category).value * scaleFactor);-->
+<!--            const yMax = barY - token.radius * scaleFactor;-->
+<!--            // const barHeight = height - y(data.find(d => d.category === token.category).value);-->
+<!--            // const barY = y(data.find(d => d.category === token.category).value);-->
+<!--            // const yMax = barY - token.radius * 3;-->
+
+<!--            if (token.y > yMax) {-->
+<!--                token.targetY = yMax;-->
+<!--            }-->
+<!--            // Prevent token from going below the bar top-->
+<!--            if (token.y + token.radius >= barY) {-->
+<!--                token.y = barY - token.radius * scaleFactor;-->
+<!--            }-->
+
+<!--        }-->
+<!--    }-->
+<!--    const scaleFactor = 2;-->
+
+<!--    function addToken(categoryIndex) {-->
+<!--        const category = data[categoryIndex].category;-->
+<!--        const tokens = tokenMap.get(category);-->
+<!--        const simulation = simulationMap.get(category);-->
+
+<!--        const barHeight = height - y(data[categoryIndex].value * scaleFactor);-->
+<!--        const barY = y(data[categoryIndex].value * scaleFactor);-->
+<!--        // const category = data[categoryIndex].category;-->
+<!--        // const tokens = tokenMap.get(category);-->
+<!--        // const simulation = simulationMap.get(category);-->
+<!--        //-->
+<!--        // const barHeight = data[categoryIndex].value * tokenSize * 2;-->
+<!--        // const barY = height - barHeight;-->
+
+<!--        // Check if the bar has reached its maximum value, and if so, do not add a new token-->
+<!--        if (data[categoryIndex].value >= data[categoryIndex].maxValue) {-->
+<!--            return;-->
+<!--        }-->
+
+<!--        const token = {-->
+<!--            category: category,-->
+<!--            value: data[categoryIndex].value,-->
+<!--            x: x(category) + x.bandwidth() / 2,-->
+<!--            y: -tokenSize,-->
+<!--            targetX: x(category) + Math.random() * x.bandwidth(),-->
+<!--            targetY: barY - tokenSize * 3,-->
+<!--            radius: tokenSize-->
+<!--        };-->
+
+<!--        tokens.push(token);-->
+
+
+<!--        // Check if the bar has more than 10 tokens, and if so, remove the oldest one-->
+<!--        // if (tokens.length > 5) {-->
+<!--        //     tokens[0].disappearing = true;-->
+<!--        //     disappearToken(tokens[0]);-->
+<!--        //     tokens.shift(); // Remove the first token from the array-->
+<!--        // }-->
+<!--        data[categoryIndex].value += 1;-->
+<!--        updateBars();-->
+
+<!--        const circles = svg.selectAll(`.token-${category}`)-->
+<!--            .data(tokens)-->
+<!--            .join("circle")-->
+<!--            .attr("class", `token token-${category}`)-->
+<!--            .attr("r", (d) => d.radius);-->
+
+<!--        simulation.nodes(tokens);-->
+<!--        simulation.alpha(1).restart();-->
+<!--    }-->
+
+<!--    function updateBars() {-->
+<!--        bars.data(data)-->
+<!--            .transition()-->
+<!--            .duration(500)-->
+<!--            .attr("y", d => y(d.value))-->
+<!--            .attr("height", d => height - y(d.value));-->
+<!--    }-->
+
+<!--    // function updateBars() {-->
+<!--    //     bars.data(data)-->
+<!--    //         .transition()-->
+<!--    //         .duration(200)-->
+<!--    //         .attr("y", d => height - d.value * tokenSize * 2)-->
+<!--    //         .attr("height", d => d.value * tokenSize * 2);-->
+<!--    // }-->
+<!--    function disappearToken(token) {-->
+<!--        if (!token.disappearing) return;-->
+
+<!--        token.radius = Math.max(0, token.radius - 0.1);-->
+<!--        svg.selectAll(".token")-->
+<!--            .data(tokens)-->
+<!--            .attr("r", d => d.radius);-->
+
+<!--        if (token.radius <= 0) {-->
+<!--            tokens.splice(tokens.indexOf(token), 1);-->
+<!--        } else {-->
+<!--            requestAnimationFrame(() => {-->
+<!--                disappearToken(token);-->
+<!--            });-->
+<!--        }-->
+<!--    }-->
+
+<!--    setInterval(() => {-->
+<!--        const categoryIndex = Math.floor(Math.random() * data.length);-->
+<!--        addToken(categoryIndex);-->
+<!--    }, 500);-->
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->
+
+
+
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
-<meta charset="utf-8">
-<style>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        .bar {
+            fill: rgba(231, 212, 202, 0.56);
+        }
 
-    .axis text {
-        font: 10px sans-serif;
-    }
+        .token {
+            fill: rgba(248, 184, 184, 0.86);
+            opacity: 0.8;
+        }
 
-    .axis line,
-    .axis path {
-        fill: none;
-        stroke: #000;
-        shape-rendering: crispEdges;
-    }
+        .category-label {
+            font-family: 'Arial', sans-serif;
+            font-size: 12px;
+            fill: rgb(61, 140, 168);
+        }
 
-</style>
+    </style>
+</head>
 <body>
-<script src="//d3js.org/d3.v3.min.js"></script>
+<svg>
+
+</svg>
+<button id="startButton">Start</button>
+<button id="resetButton">Reset</button>
+<script src="https://d3js.org/d3.v7.min.js"></script>
 <script>
 
-    var duration = 2500,
-        delay = 500;
 
-    var width = 960,
-        height = 500;
+    const dataAIMarket = [
+        { category: "Healthcare", value: 0, maxValue: 188 },
+        { category: "Agriculture", value: 0, maxValue: 7.3 },
+        { category: "Finance", value: 0, maxValue: 41.6 },
+        { category: "Marketing", value: 0, maxValue: 1591 },
+        { category: "Automotive", value: 0, maxValue: 20 },
+        { category: "Food", value: 0, maxValue: 15 },
+        { category: "Manufacturing", value: 0, maxValue: 52.4 },
+        { category: "Construction", value: 0, maxValue: 5 },
+        { category: "HR", value: 0, maxValue: 56.2 },
+        { category: "Retail", value: 0, maxValue: 57.8 },
+        { category: "Education", value: 0, maxValue: 23.92 },
+        { category: "Transportation", value: 0, maxValue: 14.79 }
+    ];
 
-    var x = d3.time.scale()
-        .domain([new Date(2010, 0, 2), new Date(2010, 1, 1)])
-        .range([0, width]);
+    const screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    const margin = { top: 20, right: 20, bottom: 40, left: 40 };
+    const width = screenWidth - margin.left - margin.right;
+    const height = 400 - margin.top - margin.bottom;
 
-    var xAxis = d3.svg.axis()
-        .scale(x)
-        .orient("bottom")
-        .tickSize(6, 0)
-        .tickFormat(d3.time.format("%m/%d"));
+    const x = d3.scaleBand()
+        .domain(dataAIMarket.map(d => d.category))
+        .rangeRound([0, width])
+        .padding(0.1);
 
-    var svg = d3.select("body").append("svg")
-        .attr("width", width)
-        .attr("height", height);
+    const maxValueExtent = d3.extent(dataAIMarket, d => d.maxValue);
 
-    var g = svg.append("g")
-        .attr("class", "axis")
-        .attr("transform", "translate(0," + height / 2 + ")")
-        .call(xAxis);
+    const logScale = d3.scaleLog()
+        .domain(maxValueExtent)
+        .range([0, height]);
 
-    setInterval(update, duration + delay);
+    dataAIMarket.forEach(d => {
+        d.scaledMaxValue = logScale(d.maxValue);
+    });
 
-    function update() {
-        x.domain([new Date(2010, 0, 2), new Date(2010, 0, Math.floor(Math.random() * 21) + 10)]);
+    const y = d3.scaleLinear()
+        .domain(d3.extent(dataAIMarket, d => d.scaledMaxValue))
+        .range([0, height]);
 
-        g.transition()
-            .duration(duration)
-            .call(xAxis);
+    const numSegments = 50;
+    const tokenSize = height / numSegments;
+
+    dataAIMarket.forEach(d => {
+        d.maxTokenNumValue = Math.floor(y(d.scaledMaxValue) / tokenSize);
+        console.log(d.category, y(d.scaledMaxValue), d.maxTokenNumValue);
+    });
+
+    const svg = d3.select("svg")
+        .attr("width", screenWidth)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", `translate(${margin.left}, ${margin.top})`);
+
+    // Gooey effect filter
+    const defs = svg.append("defs");
+    const filter = defs.append("filter")
+        .attr("id", "gooey");
+
+    filter.append("feGaussianBlur")
+        .attr("in", "SourceGraphic")
+        .attr("stdDeviation", "10")
+        .attr("result", "blur");
+
+    filter.append("feColorMatrix")
+        .attr("in", "blur")
+        .attr("mode", "matrix")
+        .attr("values", "1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7")
+        .attr("result", "gooey");
+
+    filter.append("feComposite")
+        .attr("in", "SourceGraphic")
+        .attr("in2", "gooey")
+        .attr("operator", "atop");
+
+    const circleGroup = svg.append("g")
+        .style("filter", "url(#gooey)");
+
+    const bars = svg.selectAll(".bar")
+        .data(dataAIMarket)
+        .enter().append("rect")
+        .attr("class", "bar")
+        .attr("x", d => x(d.category))
+        .attr("y", height)
+        .attr("width", x.bandwidth())
+        .attr("height", 0);
+
+    const categoryLabels = svg.selectAll(".category-label")
+        .data(dataAIMarket)
+        .enter().append("text")
+        .attr("class", "category-label")
+        .attr("x", d => x(d.category) + x.bandwidth() / 2)
+        .attr("y", d => margin.top/2)
+        .attr("text-anchor", "middle")
+        .text(d => d.category)
+        .attr("opacity", 0)
+        .transition()
+        .duration(2500)
+        // .delay((d, i) => i * 200)
+        .attr("opacity", 1);
+
+    const tokens = [];
+
+    function ticked() {
+        svg.selectAll(".token")
+            .attr("cx", d => d.x)
+            .attr("cy", d => d.y)
+            //.style("filter", "url(#gooeyCodeFilter)"); // Apply filter to circles
+    }
+    const tokenMap = new Map();
+    const simulationMap = new Map();
+
+    dataAIMarket.forEach((d) => {
+        tokenMap.set(d.category, []);
+
+        const simulation = d3.forceSimulation(tokens)
+            .force("x", d3.forceX((token) => token.targetX).strength(0.07))
+            .force("y", d3.forceY((token) => token.targetY).strength(0.28))
+            .force("collide", d3.forceCollide(tokenSize))
+            .on("tick", () => {
+                limitBarWidth(d.category);
+                ticked();
+            });
+
+
+
+        simulationMap.set(d.category, simulation);
+    });
+
+    function limitBarWidth(category) {
+        const tokens = tokenMap.get(category);
+
+        for (const token of tokens) {
+            const barX = x(token.category);
+            const barWidth = x.bandwidth();
+            const xMin = barX + token.radius;
+            const xMax = barX + barWidth - token.radius;
+
+            if (token.x < xMin) {
+                token.x = xMin;
+            }
+            if (token.x > xMax) {
+                token.x = xMax;
+            }
+
+            // Update token.targetY to keep it above the bar
+            const barHeight = dataAIMarket.find(d => d.category === token.category).value * (tokenSize * 2);
+            const barY = height - barHeight;
+            const yMax = barY - token.radius*3;
+
+            if (token.y > yMax) {
+                token.targetY = yMax;
+            }
+            // Prevent token from going below the bar top
+            if (token.y >= barY) {
+                token.y = barY - token.radius*3;
+            }
+
+        }
     }
 
+    function addToken(categoryIndex) {
+        const category = dataAIMarket[categoryIndex].category;
+        const tokens = tokenMap.get(category);
+        const simulation = simulationMap.get(category);
+
+        const barHeight = dataAIMarket[categoryIndex].value * tokenSize * 2;
+        const barY = height - barHeight;
+
+        const token = {
+            category: category,
+            value: dataAIMarket[categoryIndex].value,
+            x: x(category) + x.bandwidth() / 2,
+            y: -tokenSize,
+            targetX: x(category) + Math.random() * x.bandwidth(),
+            targetY: barY - tokenSize * 3,
+            radius: tokenSize
+        };
+
+        tokens.push(token);
+
+        // Check if the bar has more than 10 tokens, and if so, remove the oldest one
+        if (tokens.length > 5) {
+            tokens[0].disappearing = true;
+            disappearToken(tokens[0]);
+            tokens.shift(); // Remove the first token from the array
+        }
+
+        dataAIMarket[categoryIndex].value += 1;
+        updateBars();
+
+        const circles = svg.selectAll(`.token-${category}`)
+            .data(tokens)
+            .join("circle")
+            .attr("class", `token token-${category}`)
+            .attr("r", (d) => d.radius);
+
+
+        simulation.nodes(tokens);
+        simulation.alpha(1).restart();
+    }
+
+
+    function updateBars() {
+        bars.data(dataAIMarket)
+            .transition()
+            .duration(500)
+            .attr("y", d => height - d.value * tokenSize * 2)
+            .attr("height", d => d.value * tokenSize * 2)
+    }
+
+    function disappearToken(token) {
+        if (!token.disappearing) return;
+
+        token.radius = Math.max(0, token.radius - 0.1);
+        svg.selectAll(".token")
+            .data(tokens)
+            .attr("r", d => d.radius);
+
+        if (token.radius <= 0) {
+            tokens.splice(tokens.indexOf(token), 1);
+        } else {
+            requestAnimationFrame(() => {
+                disappearToken(token);
+            });
+        }
+    }
+
+    function barReachedTop(index) {
+        return dataAIMarket[index].value >= dataAIMarket[index].maxTokenNumValue/2;
+    }
+
+    // Initialize the availableCategories array with all indices
+    const availableCategories = dataAIMarket.map((_, index) => index);
+
+    let intervalId;
+
+    function startAnimation() {
+        intervalId = setInterval(() => {
+            if (availableCategories.length === 0) {
+                clearInterval(intervalId); // Stop the interval when all bars reached the top
+            } else {
+                const randomIndex = Math.floor(Math.random() * availableCategories.length);
+                const categoryIndex = availableCategories[randomIndex];
+
+                addToken(categoryIndex);
+
+                if (barReachedTop(categoryIndex)) {
+                    availableCategories.splice(randomIndex, 1);
+                }
+            }
+        }, 500);
+    }
+
+    function resetAnimation() {
+        clearInterval(intervalId);
+        availableCategories.length = 0;
+        dataAIMarket.forEach((d, index) => {
+            d.value = 0;
+            availableCategories.push(index);
+            const tokens = tokenMap.get(d.category);
+            tokens.length = 0;
+            tokenMap.set(d.category, tokens);
+        });
+        updateBars();
+        svg.selectAll(".token").remove();
+    }
+
+    document.getElementById("startButton").addEventListener("click", startAnimation);
+    document.getElementById("resetButton").addEventListener("click", resetAnimation);
+
 </script>
+</body>
+</html>
+
+
+
+
+

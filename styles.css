@@ -40,15 +40,18 @@ body, html {
 }
 /*#sectionIntro {background-image: url("https://user-images.githubusercontent.com/7003853/205509643-2283f0fe-3643-4b74-98f6-a0f2489d75ef.gif");}*/
 
-#sectionIntro {background-image: url("https://blog.immersive-insiders.com/content/images/2022/12/2.gif");}
-#section1 { background-image: url('turing4.jpg'); }  /*background-image: url('https://static01.nyt.com/images/2018/05/10/briefing/cn-turing/cn-turing-jumbo.jpg');*/
+#sectionIntro {background-image: url("https://user-images.githubusercontent.com/7003853/205509643-2283f0fe-3643-4b74-98f6-a0f2489d75ef.gif");}
+/*#sectionIntro {background-image: url("https://www.specdecoder.com/images/news/article-images/3rd-1676582625.gif");}*/
+
+#section1 { background-image: url('https://malevus.com/wp-content/uploads/2022/09/alan-turing.jpeg'); }  /*background-image: url('https://static01.nyt.com/images/2018/05/10/briefing/cn-turing/cn-turing-jumbo.jpg');*/
 /*#section2 { background-image: url("https://automationswitch.com/wp-content/uploads/2021/01/automation-switch-geoff-hint-3-1024x499.png"); }*/
 #section2 { background-image: url("https://cdn-images-1.medium.com/max/2000/1*ILJI87KKC7Y3y5ExxbGA8A.png"); }
 
-/*#section3,#section5,#section7,#section9 { background-color: #373542; }*/
-/*#section3,#section5,#section7,#section9 { background-color: #373542; }*/
 
-#section3,#section5,#section9 { background-color: #373542; }
+/*#section3,#section5,#section7,#section9 { background-color: #373542; }*/
+#section3,#section5,#section7,#section8 { background-color: #373542; }
+
+/*#section3,#section5,#section9 { background-color: #373542; }*/
 
 .text-container {
     max-width: 450px;
@@ -68,7 +71,7 @@ body, html {
 }
 
 #section7 .text-container {
-    max-width: 600px;
+    max-width: 800px;
     color: white;
     background-color: rgba(255, 255, 255, 0); /* semi-transparent white background */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0); /* subtle shadow for depth */
@@ -154,10 +157,8 @@ body, html {
     justify-content: center;
 }
 
-
-
 .option, .start-btn {
-    background-color: #a9a9a9;
+    background-color: #4ca184;
     color: #ffffff;
     border-radius: 5px;
     padding: 10px 20px;
@@ -169,7 +170,7 @@ body, html {
 
 
 .option:hover, .start-btn:hover {
-    background-color: #8c8c8c;
+    background-color: #a8d5c7;
     transform: translateY(-3px);
 }
 
@@ -184,3 +185,18 @@ body, html {
     opacity: 0;
     transition: opacity 1s ease;
 }
+
+/*.bar {*/
+/*    fill: #4ca184;*/
+/*}*/
+
+.token {
+    fill: white;
+    opacity: 0.8;
+}
+
+/*.category-label {*/
+/*    font-family: 'Arial', sans-serif;*/
+/*    font-size: 12px;*/
+/*    fill: rgb(61, 140, 168);*/
+/*}*/
