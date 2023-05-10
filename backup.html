@@ -49,7 +49,7 @@
             <svg class="chart" height="200" width="700"></svg> <!-- Invisible placeholder -->
         </div>
         <div class="text-container">
-            <h2>The Moderization of AI</h2> <h2><span class="title-highlight">Geoffrey Hinton</span></h2>
+            <h2>The moderization of AI</h2> <h2><span class="title-highlight">Geoffrey Hinton</span></h2>
             <p> Geoffrey Hinton is a computer scientist and cognitive psychologist who revolutionized the field of artificial intelligence with his groundbreaking work on  <span class="text-highlight">neural networks</span>. </p>
             <p>
                 His  work has enabled significant advances in artificial intelligence and machine learning,
@@ -106,8 +106,8 @@
     <!-- section 4, How many people use ChatGPT? -->
     <div class="parallax-section" id="section4">
         <div class="text-container">
-            <h2>How many people use <span class="title-highlight">ChatGPT?</span>
-            </h2>
+            <h2>How many people use ChatGPT?</h2>
+            <h2><span class="title-highlight">User Growth</span></h2>
             <div class="data-info"></div>
             <p>ChatGPT crossed 1 million users in 5 days of launch and set the record for the fastest-growing platform by gaining 100 million users by January. It reached 1 billion visits in February and 1v.6 billion visits in March 2023.
             </p>
@@ -121,7 +121,7 @@
             <svg class="chart" height="370" width="650"></svg>
         </div>
         <div class="text-container">
-            <h2>Time for other platforms to reach <span class="title-highlight">1 million users?</span></h2>
+            <h2>Time for platforms to reach </h2> <h2> <span class="title-highlight">1 million users</span></h2>
             <p><span class="text-highlight">ChatGPT obtained 1 million users within 5 days of its initial launch in November 2022. </span></p>
             <p>To put its phenomenal user acquisition rate into perspective,
                 the app that came closest to acquiring one million users this quickly is Instagram, which gained 1 million users after around two and a half months after launch — 70 days, or 1500% more slowly than ChatGPT.
@@ -136,7 +136,7 @@
     <!-- section 6, What was the size of the dataset used for training ChatGPT? -->
     <div class="parallax-section" id="section6">
         <div class="text-container">
-            <h2>ChatGPT Training <span class="title-highlight">Data Size</span></h2>
+            <h2>Trillions of parameters!</h2><h2> <span class="title-highlight">Training data</span></h2>
             <p>The dataset for training ChatGPT-4 — the latest version of ChatGPT — is estimated to consist of 100 trillion parameters, more than 5 times larger than the training data for ChatGPT-3. </p>
             <p>Chat-GPT-4 training data included feedback from users of ChatGPT-3 as well as feedback from over 50 AI safety and security experts.</p>
         </div>
@@ -144,24 +144,24 @@
     </div>
     <!-- section 7,  How big is the artificial intelligence market? -->
     <div class="parallax-section" id="section7">
-        <div class="text-container" style="position: absolute; top: 100px;">
-            <h2><span class = "title-highlight">How big</span> is the artificial intelligence market?</h2>
+        <div class="text-container" style="position: absolute; top: 50px;">
+            <h2>How big is the <span class = "title-highlight">AI market?</span></h2>
             <!--            <p>The overall value of the AI market is projected to hit $150+ billion dollars in 2023, rising to as much as $1.5 trillion by 2030</p>-->
             <!--            <p>  In 2021, global corporate investment in AI was almost $94 billion worldwide. </p>-->
         </div>
-        <div class="chart-container"> <svg class="chart" height="160" width="1000"  style="position: absolute; left: 300px; bottom: 1px;">
-            <rect x="50" y="10" width="100" height="150" fill="#4ca184"></rect>
-            <rect x="200" y="50" width="100" height="110" fill="#f4a261"></rect>
-            <rect x="350" y="70" width="100" height="90" fill="#e76f51"></rect>
-            <rect x="500" y="30" width="100" height="130" fill="#f4a261"></rect>
-            <rect x="650" y="100" width="100" height="60" fill="#4ca184"></rect>
-            <rect x="800" y="10" width="100" height="150" fill="#e76f51"></rect>
-        </svg> </div>
+        <span id="keepscroll" style="position: absolute; top: 220px; opacity: 0">keep scrolling...</span>
+        <div class="options" id="sendimentationButtons" style="position: absolute; top: 220px; opacity: 0">
+            <div class="option" id="startButton">REVEAL</div>
+            <div class="option" id="resetButton">RESET</div>
+        </div>
+        <div class="chart-container"> <svg class="chart" style="position: absolute; left: 0px; bottom: 0px;">
+        </svg>
+        </div>
     </div>
     <!-- section 8, Will I lose my job because of ChatGPT? -->
     <div class="parallax-section" id="section8">
         <div class="text-container">
-            <h2>Will I <span class="title-highlight">lose my job</span> because of ChatGPT?</h2>
+            <h2>Will ChatGPT </h2><h2><span class="title-highlight">take my job?</span></h2>
             <p>In 2013, a university of Oxford study estimated that 47% of the U&S workforce could potentially be replaced by AI over the next few decades. </p>
             <p>
                 Sectors likely to be particularly affected by AI advancements include tech, media, law, market research and finance.
@@ -185,9 +185,10 @@
 
 <script src="https://d3js.org/d3.v7.min.js"></script>
 <script src="https://unpkg.com/scrollama"></script>
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/visualSedimentation/0.1.1/visualSedimentation.min.js"></script>-->
 
 <script>
+
+
     const lineData = [  // in million
         {time: "November, 2022", users: 0},
         {time: "December, 2022", users: 1},  // 1 million in 5 days
@@ -209,7 +210,7 @@
     // "title": "Global artificial intelligence market size 2021-2030",
     // "description": "Artificial intelligence (AI) market size worldwide in 2021 with a forecast until 2030 (in million U.S. dollars)",
     // source: https://www.statista.com/statistics/1365145/artificial-intelligence-market-size/#:~:text=The%20market%20for%20artificial%20intelligence,nearly%20two%20trillion%20U.S.%20dollars.
-    const marketData = [
+    const marketDataByYear = [
         {"year": 2021, "value": 95602.77},
         {"year": 2022, "value": 142319.80},
         {"year": 2023, "value": 207902.42},
@@ -221,6 +222,21 @@
         {"year": 2029, "value": 1415054.84},
         {"year": 2030, "value": 1847495.60}
     ];
+    const dataAIMarket = [
+        { category: "Healthcare", value: 0, maxValue: 188 },
+        { category: "Agriculture", value: 0, maxValue: 7.3 },
+        { category: "Finance", value: 0, maxValue: 41.6 },
+        { category: "Marketing", value: 0, maxValue: 1591 },
+        { category: "Automotive", value: 0, maxValue: 20 },
+        { category: "Food", value: 0, maxValue: 15 },
+        { category: "Manufacturing", value: 0, maxValue: 52.4 },
+        { category: "Construction", value: 0, maxValue: 5 },
+        { category: "HR", value: 0, maxValue: 56.2 },
+        { category: "Retail", value: 0, maxValue: 57.8 },
+        { category: "Education", value: 0, maxValue: 23.92 },
+        { category: "Transportation", value: 0, maxValue: 14.79 }
+    ];
+
     const jobData = [ // mock data
         {
             "Industry": "Technology",
@@ -281,9 +297,9 @@
                 const containerText = section.querySelector('.text-container');
                 let chartOffsetHeight = windowHeight - container.offsetTop;
 
-                console.log("sectionTop: " + sectionTop)
-                console.log("scrollTop: " + scrollTop)
-                console.log("chartOffsetHeight: " + chartOffsetHeight)
+                // console.log("sectionTop: " + sectionTop)
+                // console.log("scrollTop: " + scrollTop)
+                // console.log("chartOffsetHeight: " + chartOffsetHeight)
                 if (section.id != "section7") {
                     // if (scrollTop + windowHeight >= sectionTop && scrollTop <= sectionTop + sectionHeight) {
                     // if (sectionTop <= scrollTop + chartOffsetHeight && scrollTop <= sectionTop + sectionHeight ) {
@@ -297,9 +313,13 @@
 
                 } else { // index == 7
                     // let containerHalfTopDist = containerText.offsetTop*0.5
+                    const buttonContainer = section.querySelector('.options')
+                    const keepscroll = section.querySelector('#keepscroll')
                     if (sectionTop <= scrollTop && scrollTop <= sectionBottom-800) {
                         const translateYAmount = scrollTop - sectionTop;
                         containerText.style.transform = `translateY(${translateYAmount}px)`;
+                        buttonContainer.style.transform = `translateY(${translateYAmount}px)`;
+                        keepscroll.style.transform = `translateY(${translateYAmount}px)`;
                     }
                 }
             });
@@ -307,6 +327,7 @@
         drawLineChart(lineData);
         drawBarChart(competitorData);
         drawCircles(trainingSizeData);
+        drawSendimentationBars(dataAIMarket);
         showIndustryQuiz();
         // Scrollama configuration
         scroller
@@ -393,15 +414,26 @@
 
     function changeSection7BackgroundColor() {
         const section7 = document.getElementById('section7');
+        let buttonsContainer = document.getElementById('sendimentationButtons');
+        let keepscroll = document.getElementById('keepscroll');
+
         const parallaxContainer = document.querySelector('.parallax-container');
         const section7Top = section7.offsetTop;
         const scrollTop = parallaxContainer.scrollTop;
         const progress = Math.min(Math.max(0, scrollTop - section7Top) / section7.offsetHeight, 1);
         const currentColor = d3.color('#373542');
         const targetColor = d3.color('#464354');
-        const interpolatedColor = d3.interpolateRgb(currentColor, targetColor)(progress);
-        console.log("progress: " + progress)
+        const interpolatedColor = d3.interpolateRgb(currentColor, targetColor)(progress*2);
         section7.style.backgroundColor = interpolatedColor;
+        if (progress < 0.4) {
+            buttonsContainer.style.opacity = 0;
+            keepscroll.style.opacity = progress*6;
+        } else {
+            keepscroll.style.opacity = 0;
+            buttonsContainer.style.opacity = progress*8-3;
+            console.log(progress)
+            console.log(buttonsContainer.style.opacity)
+        }
     }
     // Draw Charts
     function drawLineChart(lineChartData) {
@@ -453,7 +485,7 @@
             .data([lineChartData])
             .attr('d', line)
             .attr('stroke', "#4ca184")
-            .attr('stroke-width', 2)
+            .attr('stroke-width', 2.5)
             .attr('fill', 'none');
 
         const pathLength = lineChartSvg.node().getTotalLength();
@@ -466,7 +498,7 @@
             .append('circle')
             .attr('cx', d => xScaleLine(parseDate(d.time)))
             .attr('cy', d => yScaleLine(d.users))
-            .attr('r', 6)
+            .attr('r', 7)
             .style('stroke-width', 3)
             .style('stroke', 'white')
             .style('fill', "#4ca184")
@@ -511,123 +543,6 @@
             .style('font-size', '16px')
             .text('#Users (Million)');
     }
-    // function drawBarChart(competitorData) {
-    //     const margin = { top: 50, right: 20, bottom: 50, left: 80 };
-    //     const width = 650 - margin.left - margin.right;
-    //     const height = 370 - margin.top - margin.bottom;
-    //     const fragmentCount = 10;
-    //
-    //     const xScaleBar = d3.scaleBand().domain(competitorData.map(d => d.company)).range([0, width]).padding(0.2);
-    //     const yScaleBar = d3.scaleLinear()
-    //         .domain([0, d3.max(competitorData, d => durationToDays(d.duration))])
-    //         .range([height, 0]);
-    //
-    //     const colorScale = d3.scaleOrdinal(d3.schemeCategory10);
-    //
-    //     const yAxisTicks = d3.axisLeft(yScaleBar)
-    //         .tickValues(yScaleBar.ticks().concat(yScaleBar.domain()))
-    //         .tickFormat(d => {
-    //             if (d % 365 === 0) return `${d / 365} years`;
-    //             if (d % 30 === 0) return `${d / 30} months`;
-    //             return `${d} days`;
-    //         });
-    //
-    //     const chart = d3.select('#section5 .chart')
-    //         .attr('width', width + margin.left + margin.right)
-    //         .attr('height', height + margin.top + margin.bottom)
-    //         .append('g')
-    //         .attr('transform', `translate(${margin.left}, ${margin.top})`);
-    //
-    //     // Add title and axis titles
-    //     chart.append('text')
-    //         .attr('class', 'chart-title')
-    //         .attr('x', width / 2)
-    //         .attr('y', -20)
-    //         .style('text-anchor', 'middle')
-    //         .style('font-size', '18px')
-    //         .text('Time to Reach 1 Million Users');
-    //
-    //     chart.append('text')
-    //         .attr('class', 'axis-title')
-    //         .attr('x', -height / 2)
-    //         .attr('y', -67)
-    //         .attr('transform', 'rotate(-90)')
-    //         .style('text-anchor', 'middle')
-    //         .style('font-size', '12px')
-    //         .text('Duration');
-    //
-    //     chart.append('text')
-    //         .attr('class', 'axis-title')
-    //         .attr('x', width / 2)
-    //         .attr('y', height + 40)
-    //         .style('text-anchor', 'middle')
-    //         .style('font-size', '12px')
-    //         .text('Platform');
-    //
-    //     const tooltip = chart
-    //         .append('g')
-    //         .style('opacity', 0)
-    //         .style('font-size', '12px')
-    //         .style('text-anchor', 'middle');
-    //
-    //     tooltip
-    //         .append('text')
-    //         .attr('class', 'tooltip-text tooltip-duration')
-    //         .attr('y', -25);
-    //
-    //     tooltip
-    //         .append('text')
-    //         .attr('class', 'tooltip-text tooltip-launched')
-    //         .attr('y', -10);
-    //
-    //     chart.selectAll('.bar-fragment')
-    //         .data(competitorData.flatMap(d => Array(fragmentCount).fill(d)))
-    //         .join('rect')
-    //         .attr('class', 'bar-fragment')
-    //         .attr('x', (d, i) => xScaleBar(d.company))
-    //         .attr('width', xScaleBar.bandwidth())
-    //         .attr('fill', (d, i) => colorScale(competitorData.indexOf(d)))
-    //         .attr('y', height)
-    //         .attr('height', 0)
-    //         .on('mouseover', (event, d) => {
-    //             d3.select(event.currentTarget)
-    //                 .attr('fill', 'darkorange');
-    //             tooltip
-    //                 .style('opacity', 1)
-    //                 .attr('transform', `translate(${xScaleBar(d.company) + xScaleBar.bandwidth() / 2}, ${yScaleBar(durationToDays(d.duration))})`);
-    //             tooltip.select('.tooltip-launched')
-    //                 .text(`Launched in ${d.launched}`);
-    //             tooltip.select('.tooltip-duration')
-    //                 .text(`Took ${d.duration}`);
-    //         })
-    //         .on('mouseout', function(event, d) {
-    //             d3.select(event.currentTarget)
-    //                 .attr('fill', colorScale(competitorData.indexOf(d)));
-    //             tooltip.style('opacity', 0);
-    //         });
-    //
-    //     chart.append('g')
-    //         .attr('transform', `translate(0, ${height})`)
-    //         .call(d3.axisBottom(xScaleBar));
-    //
-    //     chart.append('g')
-    //         .call(yAxisTicks);
-    //
-    //     // Simulate the visual sedimentation effect
-    //     d3.select('#section5 .chart').selectAll('.bar-fragment')
-    //         .transition()
-    //         .duration(500)
-    //         .delay((d, i) => 500 * (i % fragmentCount) + 500 * Math.floor(i / fragmentCount))
-    //         .attr('y', (d, i) => {
-    //             const targetHeight = yScaleBar(0) - yScaleBar(durationToDays(d.duration));
-    //             const fragmentHeight = targetHeight / fragmentCount;
-    //             return yScaleBar(durationToDays(d.duration)) + fragmentHeight * (i % fragmentCount);
-    //         })
-    //         .attr('height', (d, i) => {
-    //             const targetHeight = yScaleBar(0) - yScaleBar(durationToDays(d.duration));
-    //             return targetHeight / fragmentCount;
-    //         });
-    // }
 
     function drawBarChart(competitorData) {
         const margin = { top: 50, right: 20, bottom: 50, left: 80 };
@@ -639,15 +554,6 @@
             .domain([0, d3.max(competitorData, d => durationToDays(d.duration))])
             .range([height, 0]);
 
-        const colorScale = d3.scaleOrdinal(d3.schemeCategory10); // Add color scale
-
-        // const yAxisTicks = d3.axisLeft(yScaleBar)
-        //     .tickValues(yScaleBar.ticks().concat(yScaleBar.domain()))
-        //     .tickFormat(d => {
-        //         if (d % 365 === 0) return `${d / 365} years`;
-        //         if (d % 30 === 0) return `${d / 30} months`;
-        //         return `${d} days`;
-        //     });
         const yAxisTicks = d3.axisLeft(yScaleBar)
             .ticks(5) // Add this line to specify the number of ticks
             .tickFormat(d => {
@@ -835,6 +741,254 @@
 
     }
 
+    function drawSendimentationBars(dataAIMarket) {
+
+        const margin = { top: 40, right: 30, bottom: 0, left: 30 };
+        const screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        const width = screenWidth - margin.left - margin.right;
+        const height = 450 - margin.top - margin.bottom;
+
+        const x = d3.scaleBand()
+            .domain(dataAIMarket.map(d => d.category))
+            .rangeRound([0, width])
+            .padding(0.1);
+
+        const maxValueExtent = d3.extent(dataAIMarket, d => d.maxValue);
+
+        const logScale = d3.scaleLog()
+            .domain(maxValueExtent)
+            .range([0, height]);
+
+        dataAIMarket.forEach(d => {
+            d.scaledMaxValue = logScale(d.maxValue);
+        });
+
+        const y = d3.scaleLinear()
+            .domain(d3.extent(dataAIMarket, d => d.scaledMaxValue))
+            .range([0, height]);
+
+        const numSegments = 120;
+        const tokenSize = (height / numSegments);
+
+        dataAIMarket.forEach(d => {
+            d.maxTokenNumValue = Math.floor(y(d.scaledMaxValue) / tokenSize);
+            // console.log(d.category, y(d.scaledMaxValue), d.maxTokenNumValue);
+        });
+
+        const svg = d3.select('#section7 .chart')
+            .attr("width", screenWidth)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", `translate(${margin.left}, ${margin.top})`);
+
+        const customColorScheme = [
+            '#719B95',
+            '#83A79F',
+            '#95B3A9',
+            '#A7BFB3',
+            '#B9CBCD',
+            '#C8D0D2',
+            '#D3C3B9',
+            '#DEB6A0',
+            '#E9A987',
+            '#F49C6E',
+            '#FF8F55',
+            '#FF8250',
+        ];
+        const colorScale = d3.scaleOrdinal(customColorScheme);
+        const bars = svg.selectAll(".bar")
+            .data(dataAIMarket)
+            .enter().append("rect")
+            .attr("class", "bar")
+            .attr("x", d => x(d.category))
+            .attr("y", height)
+            .attr("width", x.bandwidth())
+            .attr("height", 0)
+            .style("fill", (d, i) => colorScale(i));
+
+        const categoryLabels = svg.selectAll(".category-label")
+            .data(dataAIMarket)
+            .enter().append("text")
+            .attr("class", "category-label")
+            .attr("x", d => x(d.category) + x.bandwidth() / 2)
+            .attr("y", -25)
+            .attr("text-anchor", "middle")
+            .text(d => d.category)
+            .attr("opacity", 0);
+
+        const tokens = [];
+
+        function ticked() {
+            svg.selectAll(".token")
+                .attr("cx", d => d.x)
+                .attr("cy", d => d.y)
+            //.style("filter", "url(#gooeyCodeFilter)"); // Apply filter to circles
+        }
+        const tokenMap = new Map();
+        const simulationMap = new Map();
+
+        dataAIMarket.forEach((d) => {
+            tokenMap.set(d.category, []);
+            const simulation = d3.forceSimulation(tokens)
+                .force("x", d3.forceX((token) => token.targetX).strength(0.07))
+                .force("y", d3.forceY((token) => token.targetY).strength(0.28))
+                .force("collide", d3.forceCollide(tokenSize))
+                .on("tick", () => {
+                    limitBarWidth(d.category);
+                    ticked();
+                });
+            simulationMap.set(d.category, simulation);
+        });
+
+        function limitBarWidth(category) {
+            const tokens = tokenMap.get(category);
+
+            for (const token of tokens) {
+                const barX = x(token.category);
+                const barWidth = x.bandwidth();
+                const xMin = barX + token.radius;
+                const xMax = barX + barWidth - token.radius;
+
+                if (token.x < xMin) {
+                    token.x = xMin;
+                }
+                if (token.x > xMax) {
+                    token.x = xMax;
+                }
+
+                // Update token.targetY to keep it above the bar
+                const barHeight = dataAIMarket.find(d => d.category === token.category).value * (tokenSize * 2);
+                const barY = height - barHeight;
+                const yMax = barY - token.radius*3;
+
+                if (token.y > yMax) {
+                    token.targetY = yMax;
+                }
+                // Prevent token from going below the bar top
+                if (token.y >= barY) {
+                    token.y = barY - token.radius*3;
+                }
+
+            }
+        }
+
+        function addToken(categoryIndex) {
+            const category = dataAIMarket[categoryIndex].category;
+            const tokens = tokenMap.get(category);
+            const simulation = simulationMap.get(category);
+
+            const barHeight = dataAIMarket[categoryIndex].value * tokenSize * 2;
+            const barY = height - barHeight;
+
+            const token = {
+                category: category,
+                value: dataAIMarket[categoryIndex].value,
+                x: x(category) + x.bandwidth() / 2,
+                y: -tokenSize,
+                targetX: x(category) + Math.random() * x.bandwidth(),
+                targetY: barY - tokenSize * 3,
+                radius: tokenSize
+            };
+
+            tokens.push(token);
+
+            // Check if the bar has more than 10 tokens, and if so, remove the oldest one
+            if (tokens.length > 10) {
+                tokens[0].disappearing = true;
+                disappearToken(tokens[0]);
+                tokens.shift(); // Remove the first token from the array
+            }
+
+            dataAIMarket[categoryIndex].value += 1;
+            updateBars();
+
+            const circles = svg.selectAll(`.token-${category}`)
+                .data(tokens)
+                .join("circle")
+                .attr("class", `token token-${category}`)
+                .attr("r", (d) => d.radius);
+
+            simulation.nodes(tokens);
+            simulation.alpha(1).restart();
+        }
+
+
+        function updateBars() {
+            bars.data(dataAIMarket)
+                .transition()
+                .duration(20)
+                .attr("y", d => height - d.value * tokenSize * 2)
+                .attr("height", d => d.value * tokenSize * 2)
+        }
+
+        function disappearToken(token) {
+            if (!token.disappearing) return;
+            token.radius = Math.max(0, token.radius - 0.1);
+            svg.selectAll(".token")
+                .data(tokens)
+                .attr("r", d => d.radius);
+            if (token.radius <= 0) {
+                tokens.splice(tokens.indexOf(token), 1);
+            } else {
+                requestAnimationFrame(() => {
+                    disappearToken(token);
+                });
+            }
+        }
+
+        function barReachedTop(index) {
+            return dataAIMarket[index].value >= dataAIMarket[index].maxTokenNumValue/2;
+        }
+
+        // Initialize the availableCategories array with all indices
+        const availableCategories = dataAIMarket.map((_, index) => index);
+        let intervalId;
+
+        function startAnimation() {
+            categoryLabels.transition()
+                .duration(2500)
+                .attr("opacity", 0.9);
+            intervalId = setInterval(() => {
+                if (availableCategories.length === 0) {
+                    clearInterval(intervalId); // Stop the interval when all bars reached the top
+                } else {
+                    const randomIndex = Math.floor(Math.random() * availableCategories.length);
+                    const categoryIndex = availableCategories[randomIndex];
+
+                    addToken(categoryIndex);
+                    if (barReachedTop(categoryIndex)) {
+                        // let bar = bars.filter((d, i) => i === categoryIndex);
+                        // const maxValue = dataAIMarket[categoryIndex].maxValue;
+                        // bar.append("text")
+                        //     .attr("class", "max-value")
+                        //     .attr("x", x.bandwidth() / 2)
+                        //     .attr("y", dataAIMarket[categoryIndex].value * tokenSize * 2 - 20)
+                        //     .attr("text-anchor", "middle")
+                        //     .text(maxValue + 'B');
+                        availableCategories.splice(randomIndex, 1);
+                    }
+                }
+            }, 20);
+        }
+
+        function resetAnimation() {
+            categoryLabels.attr("opacity", 0);
+            clearInterval(intervalId);
+            availableCategories.length = 0;
+            dataAIMarket.forEach((d, index) => {
+                d.value = 0;
+                availableCategories.push(index);
+                const tokens = tokenMap.get(d.category);
+                tokens.length = 0;
+                tokenMap.set(d.category, tokens);
+            });
+            updateBars();
+            svg.selectAll(".token").remove();
+        }
+        document.getElementById("startButton").addEventListener("click", startAnimation);
+        document.getElementById("resetButton").addEventListener("click", resetAnimation);
+    }
+
     // Helper Functions
     function convertSizeToBillion(size) {
         if (size.includes('Million')) {
@@ -906,138 +1060,106 @@
         document.getElementById("jobQuiz").style.display = "none";
         const visualization = document.getElementById("jobQuizStats");
         visualization.style.display = "block";
-        createRadialBarChart(jobData);
+        createStackedBarChart(jobData);
     }
 
-    function createRadialBarChart(data) {
-        const width = 460;
-        const height = 460;
-        const innerRadius = 90;
-        const outerRadius = Math.min(width, height) / 2;
+    function createStackedBarChart(jobData) {
+
+        // Normalize the data
+        jobData.forEach(d => {
+            const totalConcern = d.Concern_Level_Extremely + d.Concern_Level_Moderately + d.Concern_Level_Slightly + d.Concern_Level_Not_At_All;
+            d.Concern_Level_Extremely = d.Jobs_At_Risk_Percentage * d.Concern_Level_Extremely / totalConcern;
+            d.Concern_Level_Moderately = d.Jobs_At_Risk_Percentage * d.Concern_Level_Moderately / totalConcern;
+            d.Concern_Level_Slightly = d.Jobs_At_Risk_Percentage * d.Concern_Level_Slightly / totalConcern;
+            d.Concern_Level_Not_At_All = d.Jobs_At_Risk_Percentage * d.Concern_Level_Not_At_All / totalConcern;
+        });
+
+        const margin = { top: 20, right: 20, bottom: 20, left: 40 };
+        const width = 600 - margin.left - margin.right;
+        const height = 400 - margin.top - margin.bottom;
+
         const svg = d3.select("#jobQuizStats")
-            .attr("width", width)
-            .attr("height", height)
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
             .append("g")
-            .attr("transform", `translate(${width / 2}, ${height / 2})`);
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-        const x = d3.scaleBand()
-            .range([0, 2 * Math.PI])
-            .domain(data.map(d => d.Industry))
-            .padding(0.1);
+        const customColorScheme = [
+            '#E9A987','#D3C3B9','#A7BFB3','#719B95',
+        ];
 
-        const y = d3.scaleLinear()
-            .domain([0, 100])
-            .range([innerRadius, outerRadius]);
+        const x = d3.scaleBand().range([0, width]).padding(0.4);
+        const y = d3.scaleLinear().range([height, 0]);
+        const z = d3.scaleOrdinal(customColorScheme);
 
-        const yAxis = g => g
-            .attr("text-anchor", "middle")
-            .call(g => g.selectAll("g")
-                .data(y.ticks(5).slice(1))
-                .enter().append("g")
-                .attr("fill", "none")
-                .call(g => g.append("circle")
-                    .attr("stroke", "#ccc")
-                    .attr("r", y))
-                .call(g => g.append("text")
-                    .attr("y", d => -y(d))
-                    .attr("dy", "0.35em")
-                    .attr("stroke", "#fff")
-                    .attr("stroke-width", 1.5)
-                    .text(y.tickFormat(5, "s"))
-                    .clone(true).lower()
-                    .attr("fill", "black")
-                    .attr("stroke", "none")));
 
-        svg.append("g")
-            .call(yAxis);
+        const stack = d3.stack()
+            .keys(["Concern_Level_Extremely", "Concern_Level_Moderately", "Concern_Level_Slightly", "Concern_Level_Not_At_All"]);
+        x.domain(jobData.map(d => d.Industry));
+        y.domain([0, 100]);
+        z.domain(Array.from({ length: stack.keys().length }, (_, i) => i));
 
-        svg.append("g")
-            .selectAll("path")
-            .data(data)
-            .enter()
-            .append("path")
-            .attr("fill", "#69b3a2")
-            .attr("d", d3.arc()
-                .innerRadius(innerRadius)
-                .outerRadius(d => y(d.Jobs_At_Risk_Percentage))
-                .startAngle(d => x(d.Industry))
-                .endAngle(d => x(d.Industry) + x.bandwidth())
-                .padAngle(0.01)
-                .padRadius(innerRadius));
-
-        const label = svg.append("g")
-            .selectAll("g")
-            .data(data)
+        const layer = svg.selectAll(".layer")
+            .data(stack(jobData))
             .enter().append("g")
-            .attr("text-anchor", "middle")
-            .attr("transform", d => `rotate(${((x(d.Industry) + x.bandwidth() / 2) * 180 / Math.PI - 90)})translate(${innerRadius},0)`);
+            .attr("class", "layer")
+            .style("fill", (d, i) => z(i));
 
-        label.append("line")
-            .attr("x2", -5)
-            .attr("stroke", "#000");
+        layer.selectAll("rect")
+            .data(d => d)
+            .enter().append("rect")
+            .attr("x", d => x(d.data.Industry))
+            .attr("y", d => y(d[1]))
+            .attr("height", d => y(d[0]) - y(d[1]))
+            .attr("width", x.bandwidth());
 
-        label.append("text")
-            .attr("transform", d => (x(d.Industry) + x.bandwidth() / 2 + Math.PI / 2) % (2 * Math.PI) < Math.PI ? "rotate(90)translate(0,22)" : "rotate(-90)translate(0, -15)")
-            .text(d => d.Industry)
-            .attr("font-size", "12px")
-            .attr("alignment-baseline", "middle");
+        // Add x-axis
+        svg.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(d3.axisBottom(x))
+            .selectAll("text")
+            .style("font-size", "12px");
+
+
+        // Add y-axis
+        svg.append("g")
+            .attr("class", "y axis")
+            .call(d3.axisLeft(y))
+            .selectAll("text")
+            .style("font-size", "12px");
+
+        // Add legend
+        const legend = svg.selectAll(".legend")
+            .data(z.domain())
+            .enter().append("g")
+            .attr("class", "legend")
+            .attr("transform", (d, i) => "translate(0," + i * 20 + ")");
+
+        legend.append("rect")
+            .attr("x", width - 18)
+            .attr("width", 18)
+            .attr("height", 18)
+            .style("fill", z);
+
+        legend.append("text")
+            .attr("x", width - 24)
+            .attr("y", 9)
+            .attr("dy", ".35em")
+            .style("text-anchor", "end")
+            .text((d, i) => {
+                switch (i) {
+                    case 0:
+                        return "Extremely Concerned";
+                    case 1:
+                        return "Moderately Concerned";
+                    case 2:
+                        return "Slightly Concerned";
+                    case 3:
+                        return "Not At All Concerned";
+                }
+            });
     }
-
-    // function drawJobStatsChart(data) {
-    //     const margin = { top: 30, right: 30, bottom: 70, left: 60 };
-    //     const width = 460 - margin.left - margin.right;
-    //     const height = 400 - margin.top - margin.bottom;
-    //
-    //     const svg = d3.select("#jobQuizStats")
-    //         .attr("width", width + margin.left + margin.right)
-    //         .attr("height", height + margin.top + margin.bottom)
-    //         .append("g")
-    //         .attr("transform", `translate(${margin.left}, ${margin.top})`);
-    //
-    //     const x = d3.scaleBand()
-    //         .range([0, width])
-    //         .domain(data.map(d => d.Industry))
-    //         .padding(0.2);
-    //     svg.append("g")
-    //         .attr("transform", `translate(0, ${height})`)
-    //         .call(d3.axisBottom(x))
-    //         .selectAll("text")
-    //         .attr("transform", "translate(-10,0)rotate(-45)")
-    //         .style("text-anchor", "end");
-    //
-    //     const y = d3.scaleLinear()
-    //         .domain([0, 100])
-    //         .range([height, 0]);
-    //     svg.append("g")
-    //         .call(d3.axisLeft(y));
-    //
-    //     svg.selectAll("mybar")
-    //         .data(data)
-    //         .enter()
-    //         .append("rect")
-    //         .attr("x", d => x(d.Industry))
-    //         .attr("width", x.bandwidth())
-    //         .attr("fill", "#69b3a2")
-    //         .attr("height", d => height - y(0))
-    //         .attr("y", d => y(0))
-    //         .transition()
-    //         .duration(800)
-    //         .attr("y", d => y(d.Jobs_At_Risk_Percentage))
-    //         .attr("height", d => height - y(d.Jobs_At_Risk_Percentage));
-    //
-    //     svg.append("text")
-    //         .attr("text-anchor", "end")
-    //         .attr("x", width / 2 + margin.left)
-    //         .attr("y", height + margin.top + 20)
-    //         .text("Industry");
-    //
-    //     svg.append("text")
-    //         .attr("text-anchor", "end")
-    //         .attr("transform", "rotate(-90)")
-    //         .attr("y", -margin.left + 20)
-    //         .attr("x", -height / 2)
-    //         .text("Percentage of Jobs at Risk");
-    // }
 
 </script>
 </body>

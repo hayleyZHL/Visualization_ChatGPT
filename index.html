@@ -295,7 +295,6 @@
                 const sectionBottom = section.offsetTop + sectionHeight;
                 const container = section.querySelector('.chart-container') || section.querySelector('.quiz-container');
                 const containerText = section.querySelector('.text-container');
-                let chartOffsetHeight = windowHeight - container.offsetTop;
 
                 // console.log("sectionTop: " + sectionTop)
                 // console.log("scrollTop: " + scrollTop)
@@ -344,7 +343,6 @@
             parallaxScroll();
         });
         parallaxScroll(); // Initial Set Up
-
 
         function handleStepEnter(element, index, direction) {
             if (index === 3) {
@@ -435,6 +433,7 @@
             console.log(buttonsContainer.style.opacity)
         }
     }
+
     // Draw Charts
     function drawLineChart(lineChartData) {
         const parseDate = d3.timeParse("%B, %Y");
@@ -689,9 +688,8 @@
             .attr('fill', 'black')
             .attr('font-size', '14px');
 
-        // Add a simple shadow effect
+        // Add the filter
         const defs = chartSvg.append('defs');
-
         const filter = defs.append('filter')
             .attr('id', 'shadow')
             .attr('x', '-50%')
@@ -768,11 +766,10 @@
             .range([0, height]);
 
         const numSegments = 120;
-        const tokenSize = (height / numSegments);
+        const tokenSize = (height / numSegments) * 1.25;
 
         dataAIMarket.forEach(d => {
             d.maxTokenNumValue = Math.floor(y(d.scaledMaxValue) / tokenSize);
-            // console.log(d.category, y(d.scaledMaxValue), d.maxTokenNumValue);
         });
 
         const svg = d3.select('#section7 .chart')
@@ -788,12 +785,12 @@
 
         filter.append("feGaussianBlur")
             .attr("in", "SourceGraphic")
-            .attr("stdDeviation", "10")
+            .attr("stdDeviation", "2.6")
             .attr("result", "blur");
 
         filter.append("feColorMatrix")
             .attr("in", "blur")
-            .attr("mode", "matrix")
+            .attr("type", "matrix")
             .attr("values", "1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7")
             .attr("result", "gooey");
 
@@ -802,14 +799,6 @@
             .attr("in2", "gooey")
             .attr("operator", "atop");
 
-        const circleGroup = svg.append("g")
-            .style("filter", "url(#gooey)");
-
-        // const customColorScheme = [
-        //     '#83c8b1', '#7ec4ad', '#79c0a9', '#74bca5',
-        //     '#6fb8a1', '#6ab49d', '#65b099', '#60ac95',
-        //     '#5ba891', '#56a48d', '#519f89', '#4c9b85'
-        // ];
         const customColorScheme = [
             '#719B95',
             '#83A79F',
@@ -825,9 +814,13 @@
             '#FF8250',
         ];
         const colorScale = d3.scaleOrdinal(customColorScheme);
-        const bars = svg.selectAll(".bar")
+        const categoryGroups = svg.selectAll(".category-group")
             .data(dataAIMarket)
-            .enter().append("rect")
+            .enter().append("g")
+            .attr("class", "category-group")
+            .attr("filter", "url(#gooey)");  // Apply the filter to each group
+
+        const bars = categoryGroups.append("rect")
             .attr("class", "bar")
             .attr("x", d => x(d.category))
             .attr("y", height)
@@ -845,13 +838,14 @@
             .text(d => d.category)
             .attr("opacity", 0);
 
+        const circleWrapper = categoryGroups.append("g");
+
         const tokens = [];
 
         function ticked() {
-            svg.selectAll(".token")
+            circleWrapper.selectAll(".token")
                 .attr("cx", d => d.x)
                 .attr("cy", d => d.y)
-            //.style("filter", "url(#gooeyCodeFilter)"); // Apply filter to circles
         }
         const tokenMap = new Map();
         const simulationMap = new Map();
@@ -931,11 +925,12 @@
             dataAIMarket[categoryIndex].value += 1;
             updateBars();
 
-            const circles = svg.selectAll(`.token-${category}`)
+            const circles = circleWrapper.selectAll(`.token-${category}`)
                 .data(tokens)
                 .join("circle")
                 .attr("class", `token token-${category}`)
-                .attr("r", (d) => d.radius);
+                .attr("r", (d) => d.radius)
+                .style("fill", colorScale(categoryIndex));
 
             simulation.nodes(tokens);
             simulation.alpha(1).restart();
@@ -953,7 +948,7 @@
         function disappearToken(token) {
             if (!token.disappearing) return;
             token.radius = Math.max(0, token.radius - 0.1);
-            svg.selectAll(".token")
+            circleWrapper.selectAll(".token")
                 .data(tokens)
                 .attr("r", d => d.radius);
             if (token.radius <= 0) {
@@ -986,14 +981,6 @@
 
                     addToken(categoryIndex);
                     if (barReachedTop(categoryIndex)) {
-                        // let bar = bars.filter((d, i) => i === categoryIndex);
-                        // const maxValue = dataAIMarket[categoryIndex].maxValue;
-                        // bar.append("text")
-                        //     .attr("class", "max-value")
-                        //     .attr("x", x.bandwidth() / 2)
-                        //     .attr("y", dataAIMarket[categoryIndex].value * tokenSize * 2 - 20)
-                        //     .attr("text-anchor", "middle")
-                        //     .text(maxValue + 'B');
                         availableCategories.splice(randomIndex, 1);
                     }
                 }
@@ -1012,8 +999,9 @@
                 tokenMap.set(d.category, tokens);
             });
             updateBars();
-            svg.selectAll(".token").remove();
+            circleWrapper.selectAll(".token").remove();
         }
+
         document.getElementById("startButton").addEventListener("click", startAnimation);
         document.getElementById("resetButton").addEventListener("click", resetAnimation);
     }
