@@ -40,21 +40,45 @@ body, html {
 }
 /*#sectionIntro {background-image: url("https://user-images.githubusercontent.com/7003853/205509643-2283f0fe-3643-4b74-98f6-a0f2489d75ef.gif");}*/
 
-#sectionIntro {background-image: url("https://user-images.githubusercontent.com/7003853/205509643-2283f0fe-3643-4b74-98f6-a0f2489d75ef.gif");}
-/*#sectionIntro {background-image: url("https://www.specdecoder.com/images/news/article-images/3rd-1676582625.gif");}*/
+/*#sectionIntro {background-image: url("https://user-images.githubusercontent.com/7003853/205509643-2283f0fe-3643-4b74-98f6-a0f2489d75ef.gif");}*/
+#sectionIntro {
+    background-image: url('introChat.gif');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+}
 
-#section1 { background-image: url('https://malevus.com/wp-content/uploads/2022/09/alan-turing.jpeg'); }  /*background-image: url('https://static01.nyt.com/images/2018/05/10/briefing/cn-turing/cn-turing-jumbo.jpg');*/
+/*#section1 { background-image: url('https://malevus.com/wp-content/uploads/2022/09/alan-turing.jpeg'); }*/
+#section1 {
+    background-image: url('https://i0.wp.com/rayhaber.com/wp-content/uploads/2021/06/alan-turing-kimdir.jpg?fit=1780%2C1000&ssl=1');
+    /*background-size: contain;*/
+    /*background-position: left;*/
+    /*background-repeat: no-repeat;*/
+    width: 100%;
+    height: 100%;
+
+
+}
+
+/*background-image: url('https://static01.nyt.com/images/2018/05/10/briefing/cn-turing/cn-turing-jumbo.jpg');*/
 /*#section2 { background-image: url("https://automationswitch.com/wp-content/uploads/2021/01/automation-switch-geoff-hint-3-1024x499.png"); }*/
-#section2 { background-image: url("https://cdn-images-1.medium.com/max/2000/1*ILJI87KKC7Y3y5ExxbGA8A.png"); }
+#section2 { background-image: url("https://static01.nyt.com/images/2023/04/26/multimedia/01AI-HINTON/cpvk-superJumbo.jpg"); }
+
+#section3 {
+    background-image: url("https://cdn-images-1.medium.com/max/2000/1*ILJI87KKC7Y3y5ExxbGA8A.png");
+
+}
 
 
 /*#section3,#section5,#section7,#section9 { background-color: #373542; }*/
-#section3,#section5,#section7,#section8 { background-color: #373542; }
+#section5,#section7,#section8 { background-color: #373542; }
 
 /*#section3,#section5,#section9 { background-color: #373542; }*/
 
 .text-container {
-    max-width: 450px;
+    max-width: 420px;
     padding: 30px;
     box-sizing: border-box;
     font-size: 18px;
@@ -68,6 +92,18 @@ body, html {
 
 #introText {
     max-width: 370px;
+}
+
+#section1 .text-container{
+    background-color: rgba(231, 230, 230, 0.75); /* semi-transparent white background */
+}
+
+#section2 .text-container{
+    background-color: rgba(234, 234, 234, 0.59); /* semi-transparent white background */
+}
+
+#section3 .text-container{
+    background-color: rgba(255, 255, 255, 0.9); /* semi-transparent white background */
 }
 
 #section7 .text-container {

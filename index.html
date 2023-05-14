@@ -24,6 +24,9 @@
     </div>
     <!-- section 1, Turing & Turing Test -->
     <div class="parallax-section" id="section1">
+        <div class="chart-container" style="visibility: hidden;">
+            <svg class="chart" height="200" width="850"></svg> <!-- Invisible placeholder -->
+        </div>
         <div class="text-container">
             <h2>The origin of AI</h2>
                 <h2><span class="title-highlight"> Alan Turing </span></h2>
@@ -38,27 +41,26 @@
 <!--            </p>-->
 
         </div>
-        <div class="chart-container" style="visibility: hidden;">
-            <svg class="chart" height="200" width="850"></svg> <!-- Invisible placeholder -->
-        </div>
+
     </div>
 
     <!-- section 2, Hinton & Neuron Network -->
     <div class="parallax-section" id="section2">
-        <div class="chart-container" style="visibility: hidden;">
-            <svg class="chart" height="200" width="700"></svg> <!-- Invisible placeholder -->
-        </div>
+
         <div class="text-container">
             <h2>The moderization of AI</h2> <h2><span class="title-highlight">Geoffrey Hinton</span></h2>
             <p> Geoffrey Hinton is a computer scientist and cognitive psychologist who revolutionized the field of artificial intelligence with his groundbreaking work on  <span class="text-highlight">neural networks</span>. </p>
             <p>
             His  work has enabled significant advances in artificial intelligence and machine learning,
                 including the development of the transformer architecture used in the ChatGPT model. </p>
-            <p>
-                <img src="https://media.wired.com/photos/59327770edfced5820d10bb3/master/w_2560%2Cc_limit/ai_new-ft.jpg">
+<!--            <p>-->
+<!--                <img src="https://media.wired.com/photos/59327770edfced5820d10bb3/master/w_2560%2Cc_limit/ai_new-ft.jpg">-->
 
 
-            </p>
+<!--            </p>-->
+        </div>
+        <div class="chart-container" style="visibility: hidden;">
+            <svg class="chart" height="200" width="700"></svg> <!-- Invisible placeholder -->
         </div>
     </div>
 
@@ -668,7 +670,6 @@
             .attr('r', 0)
             .attr('fill', "#4ca184");
 
-            // Add model name inside the circle
         const textLabels = chartSvg.selectAll('text')
             .data(trainingSizeData)
             .join('text')
@@ -785,7 +786,7 @@
 
         filter.append("feGaussianBlur")
             .attr("in", "SourceGraphic")
-            .attr("stdDeviation", "2.6")
+            .attr("stdDeviation", "3.2")
             .attr("result", "blur");
 
         filter.append("feColorMatrix")
@@ -964,7 +965,6 @@
             return dataAIMarket[index].value >= dataAIMarket[index].maxTokenNumValue/2;
         }
 
-        // Initialize the availableCategories array with all indices
         const availableCategories = dataAIMarket.map((_, index) => index);
         let intervalId;
 
