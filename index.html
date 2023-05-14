@@ -742,7 +742,7 @@
 
     function drawSendimentationBars(dataAIMarket) {
 
-        const margin = { top: 40, right: 30, bottom: 0, left: 30 };
+        const margin = { top: 60, right: 15, bottom: 0, left: 15 };
         const screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
         const width = screenWidth - margin.left - margin.right;
         const height = 450 - margin.top - margin.bottom;
@@ -768,6 +768,7 @@
 
         const numSegments = 120;
         const tokenSize = (height / numSegments) * 1.25;
+        const durationTime = 25;
 
         dataAIMarket.forEach(d => {
             d.maxTokenNumValue = Math.floor(y(d.scaledMaxValue) / tokenSize);
@@ -821,23 +822,44 @@
             .attr("class", "category-group")
             .attr("filter", "url(#gooey)");  // Apply the filter to each group
 
+        const topBars = categoryGroups.append("rect")
+            .attr("class", "bar")
+            .attr("x", d => x(d.category))
+            .attr("y", -57)
+            .attr("width", x.bandwidth())
+            .attr("height", 24)
+            .style("fill", (d, i) => colorScale(i))
+            .attr("opacity", 0);
+
         const bars = categoryGroups.append("rect")
             .attr("class", "bar")
             .attr("x", d => x(d.category))
             .attr("y", height)
             .attr("width", x.bandwidth())
             .attr("height", 0)
-            .style("fill", (d, i) => colorScale(i));
+        .style("fill", function (d, i) {
+            let color = colorScale(i);
+            d3.select(this).style("text-shadow", `0 0 8px rgba(${color.r}, ${color.g}, ${color.b}, 0.55)`);
+            return color;
+        })
 
         const categoryLabels = svg.selectAll(".category-label")
             .data(dataAIMarket)
             .enter().append("text")
             .attr("class", "category-label")
             .attr("x", d => x(d.category) + x.bandwidth() / 2)
-            .attr("y", -25)
+            .attr("y", -40)
             .attr("text-anchor", "middle")
             .text(d => d.category)
+            .style("fill", "black")
+        // .style("fill", function (d, i) {
+            //     let color = colorScale(i);
+            //     d3.select(this).style("text-shadow", `0 0 8px rgba(${color.r}, ${color.g}, ${color.b}, 0.55)`);
+            //     return color;
+            // })
+            .style("font-family", "Garamond")
             .attr("opacity", 0);
+
 
         const circleWrapper = categoryGroups.append("g");
 
@@ -854,8 +876,8 @@
         dataAIMarket.forEach((d) => {
             tokenMap.set(d.category, []);
             const simulation = d3.forceSimulation(tokens)
-                .force("x", d3.forceX((token) => token.targetX).strength(0.07))
-                .force("y", d3.forceY((token) => token.targetY).strength(0.28))
+                .force("x", d3.forceX((token) => token.targetX).strength(0.06))
+                .force("y", d3.forceY((token) => token.targetY).strength(0.085))
                 .force("collide", d3.forceCollide(tokenSize))
                 .on("tick", () => {
                     limitBarWidth(d.category);
@@ -908,7 +930,8 @@
                 category: category,
                 value: dataAIMarket[categoryIndex].value,
                 x: x(category) + x.bandwidth() / 2,
-                y: -tokenSize,
+                // y: -tokenSize,
+                y: -58,
                 targetX: x(category) + Math.random() * x.bandwidth(),
                 targetY: barY - tokenSize * 3,
                 radius: tokenSize
@@ -941,7 +964,7 @@
         function updateBars() {
             bars.data(dataAIMarket)
                 .transition()
-                .duration(20)
+                .duration(durationTime)
                 .attr("y", d => height - d.value * tokenSize * 2)
                 .attr("height", d => d.value * tokenSize * 2)
         }
@@ -969,12 +992,21 @@
         let intervalId;
 
         function startAnimation() {
-            categoryLabels.transition()
-                .duration(2500)
-                .attr("opacity", 0.9);
+            topBars.attr("opacity", 0.6);
+            categoryLabels.transition().duration(00).attr("opacity", 0.8);
+
             intervalId = setInterval(() => {
                 if (availableCategories.length === 0) {
                     clearInterval(intervalId); // Stop the interval when all bars reached the top
+                    circleWrapper.selectAll(".token")
+                        .transition()
+                        .duration(9000)
+                        .attr("r", 1);
+                    bars.data(dataAIMarket)
+                        .transition()
+                        .duration(4200)
+                        .attr("y", d => height - (d.value + 1.3 ) * tokenSize * 2)
+                        .attr("height", d => (d.value + 1.3 ) * tokenSize * 2)
                 } else {
                     const randomIndex = Math.floor(Math.random() * availableCategories.length);
                     const categoryIndex = availableCategories[randomIndex];
@@ -984,10 +1016,11 @@
                         availableCategories.splice(randomIndex, 1);
                     }
                 }
-            }, 20);
+            }, durationTime);
         }
 
         function resetAnimation() {
+            topBars.attr("opacity", 0);
             categoryLabels.attr("opacity", 0);
             clearInterval(intervalId);
             availableCategories.length = 0;
