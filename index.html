@@ -993,7 +993,7 @@
 
         function startAnimation() {
             topBars.attr("opacity", 0.6);
-            categoryLabels.transition().duration(00).attr("opacity", 0.8);
+            categoryLabels.transition().duration(800).attr("opacity", 0.8);
 
             intervalId = setInterval(() => {
                 if (availableCategories.length === 0) {
@@ -1010,9 +1010,9 @@
                 } else {
                     const randomIndex = Math.floor(Math.random() * availableCategories.length);
                     const categoryIndex = availableCategories[randomIndex];
-
                     addToken(categoryIndex);
                     if (barReachedTop(categoryIndex)) {
+
                         availableCategories.splice(randomIndex, 1);
                     }
                 }
