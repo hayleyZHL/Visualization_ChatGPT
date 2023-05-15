@@ -63,8 +63,8 @@ body, html {
 
 }
 
-#section2 { background-image: url("https://static01.nyt.com/images/2023/04/26/multimedia/01AI-HINTON/cpvk-superJumbo.jpg"); }
-#section2 { background-image: url("jh.jpg"); }
+/*#section2 { background-image: url("https://static01.nyt.com/images/2023/04/26/multimedia/01AI-HINTON/cpvk-superJumbo.jpg"); }*/
+#section2 { background-image: url("jh2.jpg"); }
 
 
 #section3 {
@@ -100,7 +100,7 @@ body, html {
 }
 
 #section2 .text-container{
-    background-color: rgba(234, 234, 234, 0.59); /* semi-transparent white background */
+    background-color: rgba(234, 234, 234, 0.75); /* semi-transparent white background */
 }
 
 #section3 .text-container{
