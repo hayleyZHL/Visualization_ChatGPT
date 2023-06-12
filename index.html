@@ -22,6 +22,25 @@
             <svg class="chart" height="200" width="850"></svg> <!-- Invisible placeholder -->
         </div>
     </div>
+
+    <!-- section 7,  How big is the artificial intelligence market? -->
+    <div class="parallax-section" id="section7">
+        <div class="text-container" style="position: absolute; top: 50px;">
+            <h2>How big is the <span class = "title-highlight">AI market?</span></h2>
+            <!--            <p>The overall value of the AI market is projected to hit $150+ billion dollars in 2023, rising to as much as $1.5 trillion by 2030</p>-->
+            <!--            <p>  In 2021, global corporate investment in AI was almost $94 billion worldwide. </p>-->
+        </div>
+        <span id="keepscroll" style="position: absolute; top: 220px; opacity: 0">keep scrolling...</span>
+        <div class="options" id="sendimentationButtons" style="position: absolute; top: 220px; opacity: 0">
+            <div class="gif_direction">  <img src="https://media2.giphy.com/media/E7dqoSJrVQITQ4IRsW/200w.gif?cid=82a1493b0j0jk16841qmsv1hoauhn9235vcvzk80pkdt0vfj&ep=v1_gifs_related&rid=200w.gif&ct=s" width="40" height="40"></div>
+            <div class="option" id="startButton">CLICK TO REVEAL</div>
+            <div class="option" id="resetButton">RESET</div>
+        </div>
+        <div class="chart-container"> <svg class="chart" style="position: absolute; left: 0px; bottom: 0px;">
+        </svg>
+        </div>
+    </div>
+
     <!-- section 1, Turing & Turing Test -->
     <div class="parallax-section" id="section1">
         <div class="chart-container" style="visibility: hidden;">
@@ -144,23 +163,7 @@
         </div>
         <div class="chart-container"> <svg class="chart" height="400" width="800"></svg> </div>
     </div>
-    <!-- section 7,  How big is the artificial intelligence market? -->
-    <div class="parallax-section" id="section7">
-        <div class="text-container" style="position: absolute; top: 50px;">
-            <h2>How big is the <span class = "title-highlight">AI market?</span></h2>
-<!--            <p>The overall value of the AI market is projected to hit $150+ billion dollars in 2023, rising to as much as $1.5 trillion by 2030</p>-->
-<!--            <p>  In 2021, global corporate investment in AI was almost $94 billion worldwide. </p>-->
-        </div>
-        <span id="keepscroll" style="position: absolute; top: 220px; opacity: 0">keep scrolling...</span>
-        <div class="options" id="sendimentationButtons" style="position: absolute; top: 220px; opacity: 0">
-            <div class="gif_direction">  <img src="https://media2.giphy.com/media/E7dqoSJrVQITQ4IRsW/200w.gif?cid=82a1493b0j0jk16841qmsv1hoauhn9235vcvzk80pkdt0vfj&ep=v1_gifs_related&rid=200w.gif&ct=s" width="40" height="40"></div>
-            <div class="option" id="startButton">CLICK TO REVEAL</div>
-            <div class="option" id="resetButton">RESET</div>
-        </div>
-        <div class="chart-container"> <svg class="chart" style="position: absolute; left: 0px; bottom: 0px;">
-        </svg>
-        </div>
-    </div>
+
     <!-- section 8, Will I lose my job because of ChatGPT? -->
     <div class="parallax-section" id="section8">
         <div class="text-container">
@@ -177,13 +180,13 @@
         <div class="chart-container"> <svg class="chart" id="jobQuizStats" style="display: none;"></svg> </div>
     </div>
     <!-- section 9, Take a look at some of the interesting prompts!  -->
-    <div class="parallax-section" id="section9">
-        <div class="text-container">
-            <h2>Take a look at some of the <span class="title-highlight">interesting prompts!</span></h2>
-            <p>Description</p>
-        </div>
-        <div class="chart-container"> <svg class="chart" height="200" width="400"></svg> </div>
-    </div>
+<!--    <div class="parallax-section" id="section9">-->
+<!--        <div class="text-container">-->
+<!--            <h2>Take a look at some of the <span class="title-highlight">interesting prompts!</span></h2>-->
+<!--            <p>Description</p>-->
+<!--        </div>-->
+<!--        <div class="chart-container"> <svg class="chart" height="200" width="400"></svg> </div>-->
+<!--    </div>-->
 </div>
 
 <script src="https://d3js.org/d3.v7.min.js"></script>
@@ -288,10 +291,18 @@
         // Initialize Scrollama
         const scroller = scrollama();
         const parallaxContainer = document.querySelector('.parallax-container');
-        function parallaxScroll() {
+        function parallaxScroll(e) {
             const scrollTop = parallaxContainer.scrollTop;
             const scrollBottom = parallaxContainer.scrollTop +  parallaxContainer.scrollHeight;
             const windowHeight = window.innerHeight;
+
+            // if(scrollTop >= 976 && scrollTop < 1500){
+            //     parallaxContainer.scrollTop = 976;
+            //     console.log(e);
+            //     parallaxContainer.style.overflowY ="hidden";
+            //     parallaxContainer.style.overflowX ="auto";
+            // }
+
             document.querySelectorAll('.parallax-section').forEach((section, index) => {
                 const sectionTop = section.offsetTop;
                 const sectionHeight = section.offsetHeight;
@@ -299,8 +310,7 @@
                 const container = section.querySelector('.chart-container') || section.querySelector('.quiz-container');
                 const containerText = section.querySelector('.text-container');
 
-                // console.log("sectionTop: " + sectionTop)
-                // console.log("scrollTop: " + scrollTop)
+
                 // console.log("chartOffsetHeight: " + chartOffsetHeight)
                 if (section.id != "section7") {
                     // if (scrollTop + windowHeight >= sectionTop && scrollTop <= sectionTop + sectionHeight) {
@@ -314,14 +324,21 @@
                     }
 
                 } else { // index == 7
+
+                    console.log("sectionTop: " + sectionTop)
+                    console.log("scrollTop: " + scrollTop)
+                    console.log("sectionBottom: " + sectionBottom)
+
                     // let containerHalfTopDist = containerText.offsetTop*0.5
                     const buttonContainer = section.querySelector('.options')
                     const keepscroll = section.querySelector('#keepscroll')
                     if (sectionTop <= scrollTop && scrollTop <= sectionBottom-800) {
-                            const translateYAmount = scrollTop - sectionTop;
-                            containerText.style.transform = `translateY(${translateYAmount}px)`;
-                            buttonContainer.style.transform = `translateY(${translateYAmount}px)`;
+                        const translateYAmount = scrollTop - sectionTop;
+                        containerText.style.transform = `translateY(${translateYAmount}px)`;
+                        buttonContainer.style.transform = `translateY(${translateYAmount}px)`;
                         keepscroll.style.transform = `translateY(${translateYAmount}px)`;
+                        console.log("inside");
+                        console.log("scrollTop: " + parallaxContainer.scrollTop)
                     }
                 }
             });
@@ -329,7 +346,7 @@
         drawLineChart(lineData);
         drawBarChart(competitorData);
         drawCircles(trainingSizeData);
-        drawSendimentationBars(dataAIMarket);
+        // drawSendimentationBars(dataAIMarket);
         showIndustryQuiz();
         // Scrollama configuration
         scroller
@@ -342,22 +359,26 @@
             .onStepProgress(({element, index, progress}) => { handleStepProgress(element, index, progress); })
             .onStepExit(({element, index}) => { handleStepExit(element, index); });
 
-        parallaxContainer.addEventListener('scroll', () => {
-            parallaxScroll();
+        parallaxContainer.addEventListener('scroll', (e) => {
+            parallaxScroll(e);
         });
         parallaxScroll(); // Initial Set Up
 
         function handleStepEnter(element, index, direction) {
-            if (index === 3) {
-                const quiz = element.querySelector('.quiz-container');
+            if (index === 4) {
+                // if (index === 3) {
+
+                    const quiz = element.querySelector('.quiz-container');
             }
-            if (index === 7) {
+            if (index === 1) {
+
+                // if (index === 7) {
                 parallaxContainer.addEventListener('scroll', changeSection7BackgroundColor);
             }
         }
         function handleStepProgress(element, index, progress) {
             // Line Chart
-            if (index === 4) {
+            if (index === 5) { // == 4
                 let lineSvg = d3.select('#section4 .chart').selectAll('path')
                 const pathLength = lineSvg.node().getTotalLength();
                 lineSvg.attr('stroke-dashoffset', pathLength * (1 - progress * 2 * 1.1));
@@ -375,7 +396,7 @@
 
             }
             // Bar Chart
-            if (index === 5) {
+            if (index === 6) {
                 const margin = { top: 50, right: 20, bottom: 50, left: 80 };
                 const height = 370 - margin.top - margin.bottom;
                 let barSvg = d3.select('#section5 .chart').selectAll('rect')
@@ -390,7 +411,7 @@
                 });
             }
             // Circles
-            if (index === 6) {
+            if (index === 7) {
                 let circlesSvg = d3.select('#section6 .chart').selectAll('circle');
                 circlesSvg.each(function (d) {
                     const circle = d3.select(this);
@@ -407,8 +428,10 @@
                 // const quiz = element.querySelector('.quiz-container');
                 // quiz.style.opacity = 0;
             }
-            if (index === 7) {
-                parallaxContainer.removeEventListener('scroll', changeSection7BackgroundColor);
+            // if (index === 7) {
+            if (index === 1) {
+
+            parallaxContainer.removeEventListener('scroll', changeSection7BackgroundColor);
             }
         }
     });
@@ -1035,7 +1058,6 @@
             updateBars();
             circleWrapper.selectAll(".token").remove();
         }
-
         document.getElementById("startButton").addEventListener("click", startAnimation);
         document.getElementById("resetButton").addEventListener("click", resetAnimation);
     }
