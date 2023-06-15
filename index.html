@@ -25,18 +25,17 @@
 
     <!-- section 7,  How big is the artificial intelligence market? -->
     <div class="parallax-section" id="section7">
-        <div class="text-container" style="position: absolute; top: 50px;">
+        <div class="text-container" id="section7Text" style="position:sticky;top:50px;">
             <h2>How big is the <span class = "title-highlight">AI market?</span></h2>
-            <!--            <p>The overall value of the AI market is projected to hit $150+ billion dollars in 2023, rising to as much as $1.5 trillion by 2030</p>-->
-            <!--            <p>  In 2021, global corporate investment in AI was almost $94 billion worldwide. </p>-->
         </div>
-        <span id="keepscroll" style="position: absolute; top: 220px; opacity: 0">keep scrolling...</span>
-        <div class="options" id="sendimentationButtons" style="position: absolute; top: 220px; opacity: 0">
+<!--        <span id="keepscroll" style="position:sticky; top: 200px; opacity: 0">keep scrolling...</span>-->
+        <div class="options" id="sendimentationButtons" style="position:sticky;top: 200px;opacity: 1">
             <div class="gif_direction">  <img src="https://media2.giphy.com/media/E7dqoSJrVQITQ4IRsW/200w.gif?cid=82a1493b0j0jk16841qmsv1hoauhn9235vcvzk80pkdt0vfj&ep=v1_gifs_related&rid=200w.gif&ct=s" width="40" height="40"></div>
             <div class="option" id="startButton">CLICK TO REVEAL</div>
             <div class="option" id="resetButton">RESET</div>
         </div>
-        <div class="chart-container"> <svg class="chart" style="position: absolute; left: 0px; bottom: 0px;">
+        <div class="chart-container">
+            <svg class="chart" style="position: absolute; left: 0px; bottom: 0px;">
         </svg>
         </div>
     </div>
@@ -242,7 +241,6 @@
         { category: "Education", value: 0, maxValue: 23.92 },
         { category: "Transportation", value: 0, maxValue: 14.79 }
     ];
-
     const jobData = [ // mock data
         {
             "Industry": "Technology",
@@ -286,7 +284,6 @@
         }
     ]
 
-
     document.addEventListener('DOMContentLoaded', () => {
         // Initialize Scrollama
         const scroller = scrollama();
@@ -296,13 +293,6 @@
             const scrollBottom = parallaxContainer.scrollTop +  parallaxContainer.scrollHeight;
             const windowHeight = window.innerHeight;
 
-            // if(scrollTop >= 976 && scrollTop < 1500){
-            //     parallaxContainer.scrollTop = 976;
-            //     console.log(e);
-            //     parallaxContainer.style.overflowY ="hidden";
-            //     parallaxContainer.style.overflowX ="auto";
-            // }
-
             document.querySelectorAll('.parallax-section').forEach((section, index) => {
                 const sectionTop = section.offsetTop;
                 const sectionHeight = section.offsetHeight;
@@ -310,36 +300,24 @@
                 const container = section.querySelector('.chart-container') || section.querySelector('.quiz-container');
                 const containerText = section.querySelector('.text-container');
 
-
-                // console.log("chartOffsetHeight: " + chartOffsetHeight)
                 if (section.id != "section7") {
-                    // if (scrollTop + windowHeight >= sectionTop && scrollTop <= sectionTop + sectionHeight) {
-                    // if (sectionTop <= scrollTop + chartOffsetHeight && scrollTop <= sectionTop + sectionHeight ) {
                     if (sectionTop <= scrollTop && scrollTop <= sectionTop + sectionHeight ) {
-
-                    const translateAmount = (scrollTop - sectionTop) / 2;
+                        const translateAmount = (scrollTop - sectionTop) / 2;
                         const translateAmountText = -(scrollTop - sectionTop) / 3;
                         container.style.transform = `translateY(${translateAmount}px)`;
                         containerText.style.transform = `translateY(${translateAmountText}px)`;
                     }
-
-                } else { // index == 7
-
-                    console.log("sectionTop: " + sectionTop)
-                    console.log("scrollTop: " + scrollTop)
-                    console.log("sectionBottom: " + sectionBottom)
-
-                    // let containerHalfTopDist = containerText.offsetTop*0.5
-                    const buttonContainer = section.querySelector('.options')
-                    const keepscroll = section.querySelector('#keepscroll')
-                    if (sectionTop <= scrollTop && scrollTop <= sectionBottom-800) {
-                        const translateYAmount = scrollTop - sectionTop;
-                        containerText.style.transform = `translateY(${translateYAmount}px)`;
-                        buttonContainer.style.transform = `translateY(${translateYAmount}px)`;
-                        keepscroll.style.transform = `translateY(${translateYAmount}px)`;
-                        console.log("inside");
-                        console.log("scrollTop: " + parallaxContainer.scrollTop)
-                    }
+                // } else { // section7
+                    // const buttonContainer = section.querySelector('.options')
+                    // const keepscroll = section.querySelector('#keepscroll')
+                    // if (sectionTop <= scrollTop && scrollTop <= sectionBottom-800) {
+                    //     // const translateYAmount = scrollTop - sectionTop;
+                        // containerText.style.transform = `translateY(${translateYAmount}px)`;
+                        // buttonContainer.style.transform = `translateY(${translateYAmount}px)`;
+                        // keepscroll.style.transform = `translateY(${translateYAmount}px)`;
+                    //     console.log("inside");
+                    //     console.log("scrollTop: " + parallaxContainer.scrollTop)
+                    // }
                 }
             });
         }
@@ -365,20 +343,35 @@
         parallaxScroll(); // Initial Set Up
 
         function handleStepEnter(element, index, direction) {
+            // if (index === 1) {
+            //     parallaxContainer.addEventListener('scroll', changeSection7BackgroundColor);
+            // }
+
             if (index === 4) {
-                // if (index === 3) {
-
-                    const quiz = element.querySelector('.quiz-container');
-            }
-            if (index === 1) {
-
-                // if (index === 7) {
-                parallaxContainer.addEventListener('scroll', changeSection7BackgroundColor);
+                const quiz = element.querySelector('.quiz-container');
             }
         }
         function handleStepProgress(element, index, progress) {
+            console.log(index)
+            //每次都会略过index===1的情况 所以下面的code都不会触发
+            // if (index === 1) {
+            //     console.log("section 1")
+            //
+            //     let buttonsContainer = document.getElementById('sendimentationButtons');
+            //     let keepscroll = document.getElementById('keepscroll');
+            //     if (progress < 0.4) {
+            //         buttonsContainer.style.opacity = 0;
+            //         keepscroll.style.opacity = progress*6;
+            //     } else {
+            //         keepscroll.style.opacity = 0;
+            //         buttonsContainer.style.opacity = progress*8-3;
+            //         console.log(progress)
+            //         console.log(buttonsContainer.style.opacity)
+            //     }
+            // }
             // Line Chart
             if (index === 5) { // == 4
+                console.log("section 4")
                 let lineSvg = d3.select('#section4 .chart').selectAll('path')
                 const pathLength = lineSvg.node().getTotalLength();
                 lineSvg.attr('stroke-dashoffset', pathLength * (1 - progress * 2 * 1.1));
@@ -429,36 +422,36 @@
                 // quiz.style.opacity = 0;
             }
             // if (index === 7) {
-            if (index === 1) {
-
-            parallaxContainer.removeEventListener('scroll', changeSection7BackgroundColor);
-            }
+            // if (index === 1) {
+            //     parallaxContainer.removeEventListener('scroll', changeSection7BackgroundColor);
+            // }
         }
     });
 
-    function changeSection7BackgroundColor() {
-        const section7 = document.getElementById('section7');
-        let buttonsContainer = document.getElementById('sendimentationButtons');
-        let keepscroll = document.getElementById('keepscroll');
-
-        const parallaxContainer = document.querySelector('.parallax-container');
-        const section7Top = section7.offsetTop;
-        const scrollTop = parallaxContainer.scrollTop;
-        const progress = Math.min(Math.max(0, scrollTop - section7Top) / section7.offsetHeight, 1);
-        const currentColor = d3.color('#373542');
-        const targetColor = d3.color('#464354');
-        const interpolatedColor = d3.interpolateRgb(currentColor, targetColor)(progress*2);
-        section7.style.backgroundColor = interpolatedColor;
-        if (progress < 0.4) {
-            buttonsContainer.style.opacity = 0;
-            keepscroll.style.opacity = progress*6;
-        } else {
-            keepscroll.style.opacity = 0;
-            buttonsContainer.style.opacity = progress*8-3;
-            console.log(progress)
-            console.log(buttonsContainer.style.opacity)
-        }
-    }
+    // function changeSection7BackgroundColor() {
+    //     let section7 = document.getElementById('section7');
+    //     let buttonsContainer = document.getElementById('sendimentationButtons');
+    //     let keepscroll = document.getElementById('keepscroll');
+    //
+    //     let parallaxContainer = document.querySelector('.parallax-container');
+    //     let section7Top = section7.offsetTop;
+    //     let section7Height = section7.offsetHeight;
+    //     let scrollTop = parallaxContainer.scrollTop;
+    //     let progress = Math.min(Math.max(0, scrollTop - section7Top) / section7.offsetHeight, 1);
+    //     let currentColor = d3.color('#373542');
+    //     let targetColor = d3.color('#464354');
+    //     let interpolatedColor = d3.interpolateRgb(currentColor, targetColor)(progress*2);
+    //     section7.style.backgroundColor = interpolatedColor;
+    //     if (progress < 0.4) {
+    //         buttonsContainer.style.opacity = 0;
+    //         keepscroll.style.opacity = progress*6;
+    //     } else {
+    //         keepscroll.style.opacity = 0;
+    //         buttonsContainer.style.opacity = progress*8-3;
+    //         console.log(progress)
+    //         console.log(buttonsContainer.style.opacity)
+    //     }
+    // }
 
     // Draw Charts
     function drawLineChart(lineChartData) {
@@ -1233,7 +1226,6 @@
                 }
             });
     }
-
 </script>
 </body>
 </html>

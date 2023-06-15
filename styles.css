@@ -33,11 +33,6 @@ body, html {
     background-size: cover;
 }
 
-#section7 {
-    height: 200%;
-    flex-direction: column;
-    justify-content: center;
-}
 /*#sectionIntro {background-image: url("https://user-images.githubusercontent.com/7003853/205509643-2283f0fe-3643-4b74-98f6-a0f2489d75ef.gif");}*/
 
 /*#sectionIntro {background-image: url("https://user-images.githubusercontent.com/7003853/205509643-2283f0fe-3643-4b74-98f6-a0f2489d75ef.gif");}*/
@@ -51,6 +46,15 @@ body, html {
     width: 100%; /* full viewport width */
 }
 
+#section7 {
+    /*height: 200%;*/
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 50px;
+}
+
 /*#section1 { background-image: url('https://malevus.com/wp-content/uploads/2022/09/alan-turing.jpeg'); }*/
 #section1 {
     /*background-image: url('https://i0.wp.com/rayhaber.com/wp-content/uploads/2021/06/alan-turing-kimdir.jpg?fit=1780%2C1000&ssl=1');*/
@@ -62,23 +66,14 @@ body, html {
     width: 100%;
     height: 100%;
 
-
 }
 
-/*#section2 { background-image: url("https://static01.nyt.com/images/2023/04/26/multimedia/01AI-HINTON/cpvk-superJumbo.jpg"); }*/
 #section2 { background-image: url("jh2.jpg"); }
 
+#section3 {background-image: url("https://cdn-images-1.medium.com/max/2000/1*ILJI87KKC7Y3y5ExxbGA8A.png");}
 
-#section3 {
-    background-image: url("https://cdn-images-1.medium.com/max/2000/1*ILJI87KKC7Y3y5ExxbGA8A.png");
-
-}
-
-
-/*#section3,#section5,#section7,#section9 { background-color: #373542; }*/
-#section5,#section7,#section8 { background-color: #373542; }
-
-/*#section3,#section5,#section9 { background-color: #373542; }*/
+#section7 {background-color: #464354;}
+#section5,#section8 { background-color: #373542; }
 
 .text-container {
     max-width: 420px;
@@ -110,6 +105,8 @@ body, html {
 }
 
 #section7 .text-container {
+    /*top: 50px;*/
+    /*position: sticky;*/
     max-width: 800px;
     color: white;
     background-color: rgba(255, 255, 255, 0); /* semi-transparent white background */
@@ -117,12 +114,20 @@ body, html {
 }
 
 
-/*.chart-container { max-width: 40%; }*/
+
 .chart-container {
     max-width: 100%;
     /*opacity: 0;*/
     /*transition: opacity 1s;*/
 }
+
+#section7 .chart-container .chart{
+    background-color: rgba(68, 67, 86, 0.7);
+    /*background-color: rgba(70, 67, 84, 0.7);*/
+    /*background-color: rgba(53, 55, 66, 0.7);*/
+
+}
+
 .chart {
     display: block;
     margin: 0 auto;
@@ -241,19 +246,3 @@ body, html {
     opacity: 0;
     transition: opacity 1s ease;
 }
-
-
-/*.bar {*/
-/*    fill: #4ca184;*/
-/*}*/
-
-/*.token {*/
-/*    fill: greenyellow;*/
-/*    opacity: 0.8;*/
-/*}*/
-
-/*.category-label {*/
-/*    font-family: 'Arial', sans-serif;*/
-/*    font-size: 12px;*/
-/*    fill: rgb(61, 140, 168);*/
-/*}*/
