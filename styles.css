@@ -1,10 +1,17 @@
 body, html {
+    /*initial background*/
+    /*background-image: url('at.jpg');*/
+    /*background-color: #464354;*/
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    transition: background-image 1s ease-in-out;
     margin: 0;
     padding: 0;
     height: 100%;
     font-family: 'Google Sans', sans-serif; /* Set the font family to Google Sans */
     color: white;
-    /*font-family: Arial, sans-serif;*/
 }
 .title-highlight {
     font-size: 46px;
@@ -15,119 +22,68 @@ body, html {
 }
 .parallax-container {
     position: relative;
-    height: 100%;
-    overflow-y: scroll;
+    height: 100vh;
+    /*overflow-y: scroll;*/
     overflow-x: hidden;
     perspective: 1px;
     perspective-origin: left;
 }
 .parallax-section {
     position: relative;
-    height: 110%;
+    /*height: 110%;*/
+    height: 100vh;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    /*background-color: #f0f0f0;*/
-    background-color: #464354;
+    /*background-color: #464354;*/
     background-position: center;
     background-size: cover;
 }
-
-/*#sectionIntro {background-image: url("https://user-images.githubusercontent.com/7003853/205509643-2283f0fe-3643-4b74-98f6-a0f2489d75ef.gif");}*/
-
-/*#sectionIntro {background-image: url("https://user-images.githubusercontent.com/7003853/205509643-2283f0fe-3643-4b74-98f6-a0f2489d75ef.gif");}*/
-#sectionIntro {
-    background-image: url('introChat.gif');
-    /*    !*background-size: contain;*!*/
-    background-size: cover; /* fill the entire section */
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 100vh; /* full viewport height */
-    width: 100%; /* full viewport width */
-}
-
-#section7 {
-    /*height: 200%;*/
+#sectionIntro{ background-image: url('introChat.gif'); }
+#sectionSendimentation {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     padding-top: 50px;
+    background-color: #464354;
 }
-
-/*#section1 { background-image: url('https://malevus.com/wp-content/uploads/2022/09/alan-turing.jpeg'); }*/
-#section1 {
-    /*background-image: url('https://i0.wp.com/rayhaber.com/wp-content/uploads/2021/06/alan-turing-kimdir.jpg?fit=1780%2C1000&ssl=1');*/
-    background-image: url('at.jpg');
-
-    /*background-size: contain;*/
-    /*background-position: left;*/
-    /*background-repeat: no-repeat;*/
-    width: 100%;
-    height: 100%;
-
-}
-
-#section2 { background-image: url("jh2.jpg"); }
-
+/*#section1 {*/
+/*    background-image: url('at.jpg');*/
+/*    height: 100%;*/
+/*}*/
+/*#section2 { background-image: url("jh2.jpg"); }*/
+#section1,#section2,#section3 {height: 110%;}
 #section3 {background-image: url("https://cdn-images-1.medium.com/max/2000/1*ILJI87KKC7Y3y5ExxbGA8A.png");}
-
-#section7 {background-color: #464354;}
+#section4,#section6 { background-color: #464354; }
 #section5,#section8 { background-color: #373542; }
-
 .text-container {
     max-width: 420px;
     padding: 30px;
     box-sizing: border-box;
     font-size: 18px;
     color: black;
-    /*font-family: 'Courier New', Courier, monospace; !* Set the font family to Courier New *!*/
     background-color: rgba(255, 255, 255, 0.8); /* semi-transparent white background */
     border-radius: 5px; /* rounded corners */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* subtle shadow for depth */
     word-wrap: break-word; /* wrap long words to the next line */
 }
-
-#introText {
-    max-width: 370px;
-}
-
-#section1 .text-container{
-    background-color: rgba(231, 230, 230, 0.75); /* semi-transparent white background */
-}
-
-#section2 .text-container{
-    background-color: rgba(234, 234, 234, 0.75); /* semi-transparent white background */
-}
-
-#section3 .text-container{
-    background-color: rgba(255, 255, 255, 0.9); /* semi-transparent white background */
-}
-
-#section7 .text-container {
-    /*top: 50px;*/
-    /*position: sticky;*/
+#introText,#introT{ max-width: 370px; }
+#section1 .text-container{ background-color: rgba(231, 230, 230, 0.75); }
+#section2 .text-container{ background-color: rgba(234, 234, 234, 0.75);}
+#section3 .text-container{ background-color: rgba(255, 255, 255, 0.9); }
+#sectionSendimentation .text-container {
     max-width: 800px;
     color: white;
     background-color: rgba(255, 255, 255, 0); /* semi-transparent white background */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0); /* subtle shadow for depth */
 }
-
-
-
-.chart-container {
-    max-width: 100%;
-    /*opacity: 0;*/
-    /*transition: opacity 1s;*/
-}
-
-#section7 .chart-container .chart{
+.chart-container { max-width: 100%; }
+#sectionSendimentation .chart-container .chart{
     background-color: rgba(68, 67, 86, 0.7);
     /*background-color: rgba(70, 67, 84, 0.7);*/
     /*background-color: rgba(53, 55, 66, 0.7);*/
-
 }
-
 .chart {
     display: block;
     margin: 0 auto;
@@ -149,7 +105,6 @@ body, html {
     opacity: 0;
     transition: opacity 1s;
 }
-
 .tooltip {
     position: absolute;
     text-align: center;
@@ -164,15 +119,12 @@ body, html {
     border-radius: 8px;
     pointer-events: none;
 }
-
 .data-info {
     color: #4ca184;
     font-weight: bold;
     font-style: italic;
-    /*font-size: 20px;*/
     margin-top: 10px;
 }
-
 .quiz-container {
     max-width: 500px;
     background-image: linear-gradient(to right, rgba(244, 255, 243, 0.86), rgba(236, 242, 252, 0.86));
@@ -185,22 +137,18 @@ body, html {
     word-wrap: break-word;
     color: black;
 }
-
 .quiz-container:hover {
     box-shadow: 0 0 20px rgba(236, 242, 252, 0.86), 0 10px 20px rgba(0, 0, 0, 0.15);
     transform: translateY(-5px);
 }
-
 .question {
     font-size: 1.5em;
     margin-bottom: 20px;
 }
-
 .options {
     display: flex;
     justify-content: center;
 }
-
 .option, .start-btn {
     background-color: #4ca184;
     color: #ffffff;
@@ -211,13 +159,11 @@ body, html {
     transition: all 0.3s ease;
     cursor: pointer;
 }
-
 .option:hover, .start-btn:hover {
     background-color: #a8d5c7;
     transform: translateY(-3px);
 }
-
-#section7 .option {
+#sectionSendimentation .option {
     background-color: #464354;
     color: white;
     border-radius: 5px;
@@ -229,18 +175,15 @@ body, html {
     opacity: 0.90;
     font-size: large;
 }
-
-#section7 .option:hover {
+#sectionSendimentation .option:hover {
     background-color: #4ca184;
     transform: translateY(-3px);
 }
-
 .feedback {
     display: none;
     font-size: 1.2em;
     margin-top: 20px;
 }
-
 .reveal-image {
     display: none;
     opacity: 0;
