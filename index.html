@@ -8,14 +8,22 @@
 </head>
 
 <body>
+
+<div id="bg_at_base" style="background-image: url('at.jpg'); position: fixed; top: 0; left: 0; width: 100%; height: 100%;background-size: cover;
+    background-position: center; z-index: -1;"></div>
+<div class="background" id="bg_jh" style="background-image: url('jh2.jpg'); position: fixed; top: 0; left: 0; width: 100%; height: 100%;"></div>
+
 <div class="parallax-container">
     <!-- section 0, Intro Page -->
     <div class="parallax-section" id="sectionIntro">
         <div class="text-container" id="introText">
-            <h2> An introduction to </h2><h2><span class="title-highlight">ChatGPT</span></h2>
-            <p> <span class="text-highlight">Keep Scrolling</span> and see how this revolutionary AI language model is changing the game!</p>
+            <h2> An introduction to </h2>
+            <h2><span class="title-highlight">ChatGPT</span></h2>
+            <p><span class="text-highlight">Keep Scrolling</span> and see how this revolutionary AI language model is
+                changing the game!</p>
             <p>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/f/fd/Arrows_down_animated.gif" alt="Scroll down arrow" width="40" height="40">
+                <img alt="Scroll down arrow"
+                     height="40" src="https://upload.wikimedia.org/wikipedia/commons/f/fd/Arrows_down_animated.gif" width="40">
             </p>
         </div>
         <div class="chart-container" style="visibility: hidden;">
@@ -26,11 +34,13 @@
     <!-- section 1,  How big is the artificial intelligence market? -->
     <div class="parallax-section" id="sectionSendimentation">
         <div class="text-container" id="sectionSendimentationText" style="position:sticky;top:50px;">
-            <h2>How big is the <span class = "title-highlight">AI market?</span></h2>
+            <h2>How big is the <span class="title-highlight">AI market?</span></h2>
         </div>
         <div class="options" id="sendimentationButtons" style="position:sticky;top: 200px;opacity: 1">
-            <div class="gif_direction">  <img src="https://media2.giphy.com/media/E7dqoSJrVQITQ4IRsW/200w.gif?cid=82a1493b0j0jk16841qmsv1hoauhn9235vcvzk80pkdt0vfj&ep=v1_gifs_related&rid=200w.gif&ct=s" width="40" height="40"></div>
-            <div class="option" id="startButton">CLICK TO REVEAL</div>
+            <div class="gif_direction"><img
+                    height="40"
+                    src="https://media2.giphy.com/media/E7dqoSJrVQITQ4IRsW/200w.gif?cid=82a1493b0j0jk16841qmsv1hoauhn9235vcvzk80pkdt0vfj&ep=v1_gifs_related&rid=200w.gif&ct=s" width="40"></div>
+            <div class="option" id="startButton">CLICK TO REPLAY</div>
             <div class="option" id="resetButton">RESET</div>
         </div>
         <div class="chart-container">
@@ -49,17 +59,21 @@
             <p>
                 A renowned mathematician and computer scientist, notable for WWII codebreaking and AI pioneering.</p>
             <p>
-                He introduced the <span class="text-highlight">Turing Test</span>, gauging a machine's ability to mimic human-like intelligence—if it deceives the evaluator into thinking it's human, it passes the test.</p>
+                He introduced the <span class="text-highlight">Turing Test</span>, gauging a machine's ability to mimic
+                human-like intelligence—if it deceives the evaluator into thinking it's human, it passes the test.</p>
         </div>
     </div>
 
     <!-- section 2, Hinton & Neuron Network -->
     <div class="parallax-section" id="section2">
         <div class="text-container">
-            <h2>The moderization of AI</h2> <h2><span class="title-highlight">Geoffrey Hinton</span></h2>
-            <p> Geoffrey Hinton is a computer scientist and cognitive psychologist who revolutionized the field of artificial intelligence with his groundbreaking work on  <span class="text-highlight">neural networks</span>. </p>
+            <h2>The moderization of AI</h2>
+            <h2><span class="title-highlight">Geoffrey Hinton</span></h2>
+            <p> Geoffrey Hinton is a computer scientist and cognitive psychologist who revolutionized the field of
+                artificial intelligence with his groundbreaking work on <span
+                        class="text-highlight">neural networks</span>. </p>
             <p>
-                His  work has enabled significant advances in artificial intelligence and machine learning,
+                His work has enabled significant advances in artificial intelligence and machine learning,
                 including the development of the transformer architecture used in the ChatGPT model. </p>
         </div>
         <div class="chart-container" style="visibility: hidden;">
@@ -71,14 +85,18 @@
     <div class="parallax-section" id="section3">
         <div class="text-container">
             <h2>What is <span class="title-highlight">ChatGPT?</span></h2>
-            <p>ChatGPT is a chatbot (or, in technical terms, a ‘large language model’) created by US-based artificial intelligence company OpenAI.</p>
-            <p> When you ask ChatGPT a question, it draws on a huge body of textual data — large chunks of content found on the Internet,
+            <p>ChatGPT is a chatbot (or, in technical terms, a ‘large language model’) created by US-based artificial
+                intelligence company OpenAI.</p>
+            <p> When you ask ChatGPT a question, it draws on a huge body of textual data — large chunks of content found
+                on the Internet,
                 many books, all of Wikipedia — to provide you with a human-like answer to it. </p>
-            <p>You can also ask ChatGPT to create content for you — it can write poems, create computer code, translate languages,
+            <p>You can also ask ChatGPT to create content for you — it can write poems, create computer code, translate
+                languages,
                 provide article structures and do much else besides.</p>
         </div>
         <p>
-            <img src="https://static.wixstatic.com/media/a89add_3d73f7e43cff4f37bdf0af4772ef6595~mv2.gif" width="200" height="200" style="float: outside">
+            <img height="200" src="https://static.wixstatic.com/media/a89add_3d73f7e43cff4f37bdf0af4772ef6595~mv2.gif"
+                 style="float: outside" width="200">
         </p>
         <div class="quiz-container" id="ready">
             <div class="question">
@@ -97,14 +115,17 @@
                 <div class="option" onclick="showFeedback('no')">No</div>
             </div>
             <div class="feedback" id="feedback-yes">
-                According to Buzzfeed data scientist Max Woolf, ChatGPT has passed the Turing Test by producing responses
+                According to Buzzfeed data scientist Max Woolf, ChatGPT has passed the Turing Test by producing
+                responses
                 that were indistinguishable from human conversation to a panel of judges.
             </div>
             <div class="feedback" id="feedback-no">
-                If you ask ChatGPT if it is capable of passing the Turing test, the answer from the chatbot is a definitive ‘No!’
+                If you ask ChatGPT if it is capable of passing the Turing test, the answer from the chatbot is a
+                definitive ‘No!’
             </div>
             <p>
-                <img class="reveal-image" id="reveal-image" src="https://pbs.twimg.com/media/Fr47uLLX0AENP8i.jpg:large" alt="Image after quiz completion" width="500" height="250" style="margin-top: 20px;">
+                <img alt="Image after quiz completion" class="reveal-image" height="250"
+                     id="reveal-image" src="https://pbs.twimg.com/media/Fr47uLLX0AENP8i.jpg:large" style="margin-top: 20px;" width="500">
             </p>
         </div>
     </div>
@@ -114,11 +135,15 @@
             <h2>How many people use ChatGPT?</h2>
             <h2><span class="title-highlight">User Growth</span></h2>
             <div class="data-info"></div>
-            <p>ChatGPT crossed 1 million users in 5 days of launch and set the record for the fastest-growing platform by gaining 100 million users by January. It reached 1 billion visits in February and 1v.6 billion visits in March 2023.
+            <p>ChatGPT crossed 1 million users in 5 days of launch and set the record for the fastest-growing platform
+                by gaining 100 million users by January. It reached 1 billion visits in February and 1v.6 billion visits
+                in March 2023.
             </p>
             <p>Also, it reached 1 billion visits in February and 1.6 billion visits in March 2023.</p>
         </div>
-        <div class="chart-container"> <svg class="chart" height="400" width="700"></svg> </div>
+        <div class="chart-container">
+            <svg class="chart" height="400" width="700"></svg>
+        </div>
     </div>
     <!-- section 5, How long did it take for other platforms to reach a certain number of users? -->
     <div class="parallax-section" id="section5">
@@ -126,13 +151,18 @@
             <svg class="chart" height="370" width="650"></svg>
         </div>
         <div class="text-container">
-            <h2>Time for platforms to reach </h2> <h2> <span class="title-highlight">1 million users</span></h2>
-            <p><span class="text-highlight">ChatGPT obtained 1 million users within 5 days of its initial launch in November 2022. </span></p>
+            <h2>Time for platforms to reach </h2>
+            <h2><span class="title-highlight">1 million users</span></h2>
+            <p><span class="text-highlight">ChatGPT obtained 1 million users within 5 days of its initial launch in November 2022. </span>
+            </p>
             <p>To put its phenomenal user acquisition rate into perspective,
-                the app that came closest to acquiring one million users this quickly is Instagram, which gained 1 million users after around two and a half months after launch — 70 days, or 1500% more slowly than ChatGPT.
+                the app that came closest to acquiring one million users this quickly is Instagram, which gained 1
+                million users after around two and a half months after launch — 70 days, or 1500% more slowly than
+                ChatGPT.
             </p>
             <p>
-                Spotify and Meta also achieved the feat quickly - in 5 and 10 months, respectively, being services that like ChatGPT offer an immediate practical use.
+                Spotify and Meta also achieved the feat quickly - in 5 and 10 months, respectively, being services that
+                like ChatGPT offer an immediate practical use.
                 Apart from Instagram, social media services usually took a bit longer to gain one million users.
             </p>
         </div>
@@ -141,27 +171,39 @@
     <!-- section 6, What was the size of the dataset used for training ChatGPT? -->
     <div class="parallax-section" id="section6">
         <div class="text-container">
-            <h2>Trillions of parameters!</h2><h2> <span class="title-highlight">Training data</span></h2>
-            <p>The dataset for training ChatGPT-4 — the latest version of ChatGPT — is estimated to consist of 100 trillion parameters, more than 5 times larger than the training data for ChatGPT-3. </p>
-            <p>Chat-GPT-4 training data included feedback from users of ChatGPT-3 as well as feedback from over 50 AI safety and security experts.</p>
+            <h2>Trillions of parameters!</h2>
+            <h2><span class="title-highlight">Training data</span></h2>
+            <p>The dataset for training ChatGPT-4 — the latest version of ChatGPT — is estimated to consist of 100
+                trillion parameters, more than 5 times larger than the training data for ChatGPT-3. </p>
+            <p>Chat-GPT-4 training data included feedback from users of ChatGPT-3 as well as feedback from over 50 AI
+                safety and security experts.</p>
         </div>
-        <div class="chart-container"> <svg class="chart" height="400" width="800"></svg> </div>
+        <div class="chart-container">
+            <svg class="chart" height="400" width="800"></svg>
+        </div>
     </div>
 
     <!-- section 8, Will I lose my job because of ChatGPT? -->
     <div class="parallax-section" id="section8">
         <div class="text-container">
-            <h2>Will ChatGPT </h2><h2><span class="title-highlight">take my job?</span></h2>
-            <p>In 2013, a university of Oxford study estimated that 47% of the U&S workforce could potentially be replaced by AI over the next few decades. </p>
+            <h2>Will ChatGPT </h2>
+            <h2><span class="title-highlight">take my job?</span></h2>
+            <p>In 2013, a university of Oxford study estimated that 47% of the U&S workforce could potentially be
+                replaced by AI over the next few decades. </p>
             <p>
-                Sectors likely to be particularly affected by AI advancements include tech, media, law, market research and finance.
+                Sectors likely to be particularly affected by AI advancements include tech, media, law, market research
+                and finance.
             </p>
-            <p>Examples of jobs likely to be affected significantly by AI include programmers; journalists; paralegals, legal assistants; market researchers; educators; financial analysts; personal financial advisors; traders; graphic designers; accountants; and customer service agents.
+            <p>Examples of jobs likely to be affected significantly by AI include programmers; journalists; paralegals,
+                legal assistants; market researchers; educators; financial analysts; personal financial advisors;
+                traders; graphic designers; accountants; and customer service agents.
 
             </p>
         </div>
         <div class="quiz-container" id="jobQuiz"></div>
-        <div class="chart-container"> <svg class="chart" id="jobQuizStats" style="display: none;"></svg> </div>
+        <div class="chart-container">
+            <svg class="chart" id="jobQuizStats" style="display: none;"></svg>
+        </div>
     </div>
     <!-- section 9, Take a look at some of the interesting prompts!  -->
     <!--    <div class="parallax-section" id="section9">-->
@@ -179,8 +221,6 @@
 <script src="https://unpkg.com/scrollama"></script>
 
 <script>
-
-
     const lineData = [  // in million
         {time: "November, 2022", users: 0},
         {time: "December, 2022", users: 1},  // 1 million in 5 days
@@ -215,18 +255,18 @@
         {"year": 2030, "value": 1847495.60}
     ];
     const dataAIMarket = [
-        { category: "Healthcare", value: 0, maxValue: 188 },
-        { category: "Agriculture", value: 0, maxValue: 7.3 },
-        { category: "Finance", value: 0, maxValue: 41.6 },
-        { category: "Marketing", value: 0, maxValue: 1591 },
-        { category: "Automotive", value: 0, maxValue: 20 },
-        { category: "Food", value: 0, maxValue: 15 },
-        { category: "Manufacturing", value: 0, maxValue: 52.4 },
-        { category: "Construction", value: 0, maxValue: 5 },
-        { category: "HR", value: 0, maxValue: 56.2 },
-        { category: "Retail", value: 0, maxValue: 57.8 },
-        { category: "Education", value: 0, maxValue: 23.92 },
-        { category: "Transportation", value: 0, maxValue: 14.79 }
+        {category: "Healthcare", value: 0, maxValue: 188},
+        {category: "Agriculture", value: 0, maxValue: 7.3},
+        {category: "Finance", value: 0, maxValue: 41.6},
+        {category: "Marketing", value: 0, maxValue: 1591},
+        {category: "Automotive", value: 0, maxValue: 20},
+        {category: "Food", value: 0, maxValue: 15},
+        {category: "Manufacturing", value: 0, maxValue: 52.4},
+        {category: "Construction", value: 0, maxValue: 5},
+        {category: "HR", value: 0, maxValue: 56.2},
+        {category: "Retail", value: 0, maxValue: 57.8},
+        {category: "Education", value: 0, maxValue: 23.92},
+        {category: "Transportation", value: 0, maxValue: 14.79}
     ];
     const jobData = [ // mock data
         {
@@ -270,14 +310,22 @@
             "Concern_Level_Not_At_All": 5
         }
     ]
+    let bgATBase = document.getElementById('bg_at_base');
+    // let bgJHBase = document.getElementById('bg_jh_base');
+    // let bgAT = document.getElementById('bg_at');
+    let bgJH = document.getElementById('bg_jh');
+    // bgATBase.style.clipPath = "circle(100% at center)";
+    // bgJHBase.style.clipPath = "circle(100% at center)";
+
 
     document.addEventListener('DOMContentLoaded', () => {
         // Initialize Scrollama
         let scroller = scrollama();
         let parallaxContainer = document.querySelector('.parallax-container');
+
         function parallaxScroll(e) {
             let scrollTop = parallaxContainer.scrollTop;
-            let scrollBottom = parallaxContainer.scrollTop +  parallaxContainer.scrollHeight;
+            let scrollBottom = parallaxContainer.scrollTop + parallaxContainer.scrollHeight;
             let windowHeight = window.innerHeight;
             document.querySelectorAll('.parallax-section').forEach((section, index) => {
                 let sectionTop = section.offsetTop;
@@ -286,7 +334,7 @@
                 let container = section.querySelector('.chart-container') || section.querySelector('.quiz-container');
                 let containerText = section.querySelector('.text-container');
                 if (section.id != "sectionSendimentation") {
-                    if (sectionTop <= scrollTop && scrollTop <= sectionTop + sectionHeight ) {
+                    if (sectionTop <= scrollTop && scrollTop <= sectionTop + sectionHeight) {
                         const translateAmount = (scrollTop - sectionTop) / 2;
                         const translateAmountText = -(scrollTop - sectionTop) / 3;
                         container.style.transform = `translateY(${translateAmount}px)`;
@@ -295,6 +343,7 @@
                 }
             });
         }
+
         drawLineChart(lineData);
         drawBarChart(competitorData);
         drawCircles(trainingSizeData);
@@ -307,9 +356,16 @@
                 offset: 0.5,
                 progress: true
             })
-            .onStepEnter(({element, index, direction}) => { handleStepEnter(element, index, direction); })
-            .onStepProgress(({element, index, progress}) => { handleStepProgress(element, index, progress); })
-            .onStepExit(({element, index}) => { handleStepExit(element, index); });
+            .onStepEnter(({element, index, direction}) => {
+                handleStepEnter(element, index, direction);
+                // console.log("handle step enter");
+            })
+            .onStepProgress(({element, index, progress}) => {
+                handleStepProgress(element, index, progress);
+            })
+            .onStepExit(({element, index}) => {
+                handleStepExit(element, index);
+            });
 
         parallaxContainer.addEventListener('scroll', (e) => {
             parallaxScroll(e);
@@ -318,36 +374,31 @@
 
         let animationStart = false;
         let sec4bgChange = false;
+
         function handleStepEnter(element, index, direction) {
-            // 一加下面的背景就开始闪了
-            console.log("step enter");
-            if (index === 2) {
-                document.body.style.backgroundImage = `url('at.jpg')`
+            if(index === 2){
+                bgATBase.style.zIndex = 0;
+                bgJH.style.zIndex = -1;
             }
-            if (index === 3) {
-                document.body.style.backgroundImage = `url('jh2.jpg')`
+            if(index === 3){
+                bgATBase.style.zIndex = -1;
+                bgJH.style.zIndex = 0;
             }
-            // if (index === 4) {
-            //     document.body.style.backgroundImage = `none`
-            // }
         }
         function handleStepProgress(element, index, progress) {
             if (animationStart == false && index === 1) {
-                if (progress * 2 >= 0.65){
+                if (progress * 2 >= 0.65) {
                     let startButton = document.getElementById("startButton");
                     startButton.dispatchEvent(new Event('click'));
                     animationStart = true;
                 }
             }
-            // if (index === 4 && sec4bgChange == false) {
-            //     if (progress * 2 >= 0.85){
-            //         document.body.style.backgroundColor = `#464354`
-            //         document.body.style.backgroundImage = `none`
-            //         sec4bgChange == true
-            //     } else {
-            //
-            //     }
-            // }
+            // Hinton Background
+            if(index === 3){
+                let radius = progress * 2 * 100;
+                let radiusString = radius.toString() + "% at center";
+                bgJH.style.clipPath = "circle(" + radiusString + ")";
+            }
             // Line Chart
             if (index === 5) {
                 let lineSvg = d3.select('#section4 .chart').selectAll('path')
@@ -357,9 +408,9 @@
                 let dataIndex = Math.floor(progress * 2 * (lineData.length - 1));
                 let dataValue = lineData[dataIndex].users;
                 let dataTime = lineData[dataIndex].time;
-                if (dataValue === 0){
+                if (dataValue === 0) {
                     element.querySelector('.data-info').textContent = `ChatGPT was launched on ${dataTime}, by San Francisco–based OpenAI.`;
-                } else if (dataValue === 1){
+                } else if (dataValue === 1) {
                     element.querySelector('.data-info').textContent = ` By ${dataTime}, ChatGPT had over ${dataValue} million users.`;
                 } else {
                     element.querySelector('.data-info').textContent = ` In ${dataTime}, ChatGPT reached over ${dataValue} million users, making it the fastest growing consumer application to date.`;
@@ -368,7 +419,7 @@
             }
             // Bar Chart
             if (index === 6) {
-                let margin = { top: 50, right: 20, bottom: 50, left: 80 };
+                let margin = {top: 50, right: 20, bottom: 50, left: 80};
                 let height = 370 - margin.top - margin.bottom;
                 let barSvg = d3.select('#section5 .chart').selectAll('rect')
                 let yScaleBar = d3.scaleLinear()
@@ -378,7 +429,7 @@
                     let bar = d3.select(this);
                     let targetHeight = yScaleBar(0) - yScaleBar(durationToDays(d.duration));
                     bar.attr('height', targetHeight * progress * 2 * 1.1)
-                        .attr('y', (height - targetHeight * progress * 2  * 1.1));
+                        .attr('y', (height - targetHeight * progress * 2 * 1.1));
                 });
             }
             // Circles
@@ -393,6 +444,7 @@
                 });
             }
         }
+
         function handleStepExit(element, index) {
         }
     });
@@ -400,7 +452,7 @@
     // Draw Charts
     function drawLineChart(lineChartData) {
         const parseDate = d3.timeParse("%B, %Y");
-        const margin = { top: 50, right: 20, bottom: 50, left: 50 };
+        const margin = {top: 50, right: 20, bottom: 50, left: 50};
         const width = 700 - margin.left - margin.right;
         const height = 400 - margin.top - margin.bottom;
 
@@ -490,7 +542,7 @@
         chartSvg.append('text')
             .attr('class', 'x-axis-title')
             .attr('x', width / 2)
-            .attr('y', height + margin.bottom )
+            .attr('y', height + margin.bottom)
             .attr('text-anchor', 'middle')
             .style('font-size', '16px')
             .text('Time');
@@ -507,7 +559,7 @@
     }
 
     function drawBarChart(competitorData) {
-        const margin = { top: 50, right: 20, bottom: 50, left: 80 };
+        const margin = {top: 50, right: 20, bottom: 50, left: 80};
         const width = 650 - margin.left - margin.right;
         const height = 370 - margin.top - margin.bottom;
 
@@ -593,7 +645,7 @@
                 tooltip.select('.tooltip-duration')
                     .text(`Took ${d.duration}`);
             })
-            .on('mouseout', function(event, d) {
+            .on('mouseout', function (event, d) {
                 d3.select(event.currentTarget)
                     .attr('fill', "#4ca184")
                     .attr('width', xScaleBar.bandwidth())
@@ -612,7 +664,7 @@
     }
 
     function drawCircles(trainingSizeData) {
-        const margin = { top: 30, right: 20, bottom: 30, left: 50 };
+        const margin = {top: 30, right: 20, bottom: 30, left: 50};
         const width = 800 - margin.left - margin.right;
         const height = 400 - margin.top - margin.bottom;
 
@@ -703,7 +755,7 @@
 
     function drawSendimentationBars(dataAIMarket) {
 
-        const margin = { top: 60, right: 15, bottom: 0, left: 15 };
+        const margin = {top: 60, right: 15, bottom: 0, left: 15};
         const screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
         const width = screenWidth - margin.left - margin.right;
         const height = 450 - margin.top - margin.bottom;
@@ -831,6 +883,7 @@
                 .attr("cx", d => d.x)
                 .attr("cy", d => d.y)
         }
+
         const tokenMap = new Map();
         const simulationMap = new Map();
 
@@ -866,14 +919,14 @@
                 // Update token.targetY to keep it above the bar
                 const barHeight = dataAIMarket.find(d => d.category === token.category).value * (tokenSize * 2);
                 const barY = height - barHeight;
-                const yMax = barY - token.radius*3;
+                const yMax = barY - token.radius * 3;
 
                 if (token.y > yMax) {
                     token.targetY = yMax;
                 }
                 // Prevent token from going below the bar top
                 if (token.y >= barY) {
-                    token.y = barY - token.radius*3;
+                    token.y = barY - token.radius * 3;
                 }
             }
         }
@@ -945,7 +998,7 @@
         }
 
         function barReachedTop(index) {
-            return dataAIMarket[index].value >= dataAIMarket[index].maxTokenNumValue/2;
+            return dataAIMarket[index].value >= dataAIMarket[index].maxTokenNumValue / 2;
         }
 
         const availableCategories = dataAIMarket.map((_, index) => index);
@@ -965,8 +1018,8 @@
                     bars.data(dataAIMarket)
                         .transition()
                         .duration(4200)
-                        .attr("y", d => height - (d.value + 1.3 ) * tokenSize * 2)
-                        .attr("height", d => (d.value + 1.3 ) * tokenSize * 2)
+                        .attr("y", d => height - (d.value + 1.3) * tokenSize * 2)
+                        .attr("height", d => (d.value + 1.3) * tokenSize * 2)
                 } else {
                     const randomIndex = Math.floor(Math.random() * availableCategories.length);
                     const categoryIndex = availableCategories[randomIndex];
@@ -994,6 +1047,7 @@
             updateBars();
             circleWrapper.selectAll(".token").remove();
         }
+
         document.getElementById("startButton").addEventListener("click", startAnimation);
         document.getElementById("resetButton").addEventListener("click", resetAnimation);
     }
@@ -1011,7 +1065,7 @@
     function durationToDays(duration) {
         if (duration.includes("days")) {
             if (duration == "5 days") {
-                return parseFloat(duration)*5;
+                return parseFloat(duration) * 5;
             }
             return parseFloat(duration);
         } else if (duration.includes("months")) {
@@ -1083,7 +1137,7 @@
             d.Concern_Level_Not_At_All = d.Jobs_At_Risk_Percentage * d.Concern_Level_Not_At_All / totalConcern;
         });
 
-        const margin = { top: 20, right: 20, bottom: 20, left: 40 };
+        const margin = {top: 20, right: 20, bottom: 20, left: 40};
         const width = 600 - margin.left - margin.right;
         const height = 400 - margin.top - margin.bottom;
 
@@ -1094,7 +1148,7 @@
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
         const customColorScheme = [
-            '#E9A987','#D3C3B9','#A7BFB3','#719B95',
+            '#E9A987', '#D3C3B9', '#A7BFB3', '#719B95',
         ];
 
         const x = d3.scaleBand().range([0, width]).padding(0.4);
@@ -1106,7 +1160,7 @@
             .keys(["Concern_Level_Extremely", "Concern_Level_Moderately", "Concern_Level_Slightly", "Concern_Level_Not_At_All"]);
         x.domain(jobData.map(d => d.Industry));
         y.domain([0, 100]);
-        z.domain(Array.from({ length: stack.keys().length }, (_, i) => i));
+        z.domain(Array.from({length: stack.keys().length}, (_, i) => i));
 
         const layer = svg.selectAll(".layer")
             .data(stack(jobData))

@@ -1,18 +1,24 @@
 body, html {
-    /*initial background*/
-    /*background-image: url('at.jpg');*/
-    /*background-color: #464354;*/
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    background-attachment: fixed;
-    transition: background-image 1s ease-in-out;
     margin: 0;
     padding: 0;
     height: 100%;
-    font-family: 'Google Sans', sans-serif; /* Set the font family to Google Sans */
+    font-family: 'Google Sans', sans-serif;
     color: white;
+    overflow: hidden;
 }
+
+.background {
+    /*position: fixed;*/
+    /*width: 100%;*/
+    /*height: 100%;*/
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    /*transition: clip-path 1s ease-in-out;*/
+    /*transition: opacity 1s ease-in-out;*/
+    clip-path: circle(0% at center);
+}
+
 .title-highlight {
     font-size: 46px;
     color: #4ca184;
@@ -39,7 +45,8 @@ body, html {
     background-position: center;
     background-size: cover;
 }
-#sectionIntro{ background-image: url('introChat.gif'); }
+/*#sectionIntro{ background-image: url('introChat.gif'); }*/
+#sectionIntro{ background-image: url('chat.gif'); }
 #sectionSendimentation {
     display: flex;
     flex-direction: column;
@@ -48,12 +55,7 @@ body, html {
     padding-top: 50px;
     background-color: #464354;
 }
-/*#section1 {*/
-/*    background-image: url('at.jpg');*/
-/*    height: 100%;*/
-/*}*/
-/*#section2 { background-image: url("jh2.jpg"); }*/
-#section1,#section2,#section3 {height: 110%;}
+#section1{height: 110%;}
 #section3 {background-image: url("https://cdn-images-1.medium.com/max/2000/1*ILJI87KKC7Y3y5ExxbGA8A.png");}
 #section4,#section6 { background-color: #464354; }
 #section5,#section8 { background-color: #373542; }
